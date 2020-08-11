@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "qp-telephone-directory-app-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/qpTelephoneDirectoryApp/QpTelephoneDirectoryAppWebPart.js",
+          "manifest": "./src/webparts/qpTelephoneDirectoryApp/QpTelephoneDirectoryAppWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "QpTelephoneDirectoryAppWebPartStrings": "lib/webparts/qpTelephoneDirectoryApp/loc/{locale}.js"
+  }
+}
