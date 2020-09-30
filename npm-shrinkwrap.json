@@ -8,27 +8,174 @@
       "version": "7.10.4",
       "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.10.4.tgz",
       "integrity": "sha512-vG6SvB6oYEhvgisZNFRmRCUkLz11c7rp+tbNTynGqc6mS1d5ATd/sGyV6W0KZZnXRKMTzZDRgQT3Ou9jhpAfUg==",
-      "dev": true,
       "requires": {
         "@babel/highlight": "^7.10.4"
+      }
+    },
+    "@babel/generator": {
+      "version": "7.11.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/generator/-/generator-7.11.0.tgz",
+      "integrity": "sha1-S5DHjYwSglAkVoy+g+5smvGTWFw=",
+      "requires": {
+        "@babel/types": "^7.11.0",
+        "jsesc": "^2.5.1",
+        "source-map": "^0.5.0"
+      },
+      "dependencies": {
+        "jsesc": {
+          "version": "2.5.2",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/jsesc/-/jsesc-2.5.2.tgz",
+          "integrity": "sha1-gFZNLkg9rPbo7yCWUKZ98/DCg6Q="
+        }
+      }
+    },
+    "@babel/helper-annotate-as-pure": {
+      "version": "7.10.4",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/helper-annotate-as-pure/-/helper-annotate-as-pure-7.10.4.tgz",
+      "integrity": "sha1-W/DUlaP3V6w72ki1vzs7ownHK6M=",
+      "requires": {
+        "@babel/types": "^7.10.4"
+      }
+    },
+    "@babel/helper-function-name": {
+      "version": "7.10.4",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/helper-function-name/-/helper-function-name-7.10.4.tgz",
+      "integrity": "sha1-0tOyDFmtjEcRL6fSqUvAnV74Lxo=",
+      "requires": {
+        "@babel/helper-get-function-arity": "^7.10.4",
+        "@babel/template": "^7.10.4",
+        "@babel/types": "^7.10.4"
+      }
+    },
+    "@babel/helper-get-function-arity": {
+      "version": "7.10.4",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/helper-get-function-arity/-/helper-get-function-arity-7.10.4.tgz",
+      "integrity": "sha1-mMHL6g4jMvM/mkZhuM4VBbLBm6I=",
+      "requires": {
+        "@babel/types": "^7.10.4"
+      }
+    },
+    "@babel/helper-module-imports": {
+      "version": "7.10.4",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/helper-module-imports/-/helper-module-imports-7.10.4.tgz",
+      "integrity": "sha1-TFxUvgS9MWcKc4J5fXW5+i5bViA=",
+      "requires": {
+        "@babel/types": "^7.10.4"
+      }
+    },
+    "@babel/helper-split-export-declaration": {
+      "version": "7.11.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.11.0.tgz",
+      "integrity": "sha1-+KSRJErPamdhWKxCBykRuoOtCZ8=",
+      "requires": {
+        "@babel/types": "^7.11.0"
       }
     },
     "@babel/helper-validator-identifier": {
       "version": "7.10.4",
       "resolved": "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.10.4.tgz",
-      "integrity": "sha512-3U9y+43hz7ZM+rzG24Qe2mufW5KhvFg/NhnNph+i9mgCtdTCtMJuI1TMkrIUiK7Ix4PYlRF9I5dhqaLYA/ADXw==",
-      "dev": true
+      "integrity": "sha512-3U9y+43hz7ZM+rzG24Qe2mufW5KhvFg/NhnNph+i9mgCtdTCtMJuI1TMkrIUiK7Ix4PYlRF9I5dhqaLYA/ADXw=="
     },
     "@babel/highlight": {
       "version": "7.10.4",
       "resolved": "https://registry.npmjs.org/@babel/highlight/-/highlight-7.10.4.tgz",
       "integrity": "sha512-i6rgnR/YgPEQzZZnbTHHuZdlE8qyoBNalD6F+q4vAFlcMEcqmkoG+mPqJYJCo63qPf74+Y1UZsl3l6f7/RIkmA==",
-      "dev": true,
       "requires": {
         "@babel/helper-validator-identifier": "^7.10.4",
         "chalk": "^2.0.0",
         "js-tokens": "^4.0.0"
       }
+    },
+    "@babel/parser": {
+      "version": "7.11.3",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/parser/-/parser-7.11.3.tgz",
+      "integrity": "sha1-nh6uRnOLzQjiPoZ7q0PnuVKZqPk="
+    },
+    "@babel/template": {
+      "version": "7.10.4",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/template/-/template-7.10.4.tgz",
+      "integrity": "sha1-MlGZbEIA68cdGo/EBfupQPNrong=",
+      "requires": {
+        "@babel/code-frame": "^7.10.4",
+        "@babel/parser": "^7.10.4",
+        "@babel/types": "^7.10.4"
+      }
+    },
+    "@babel/traverse": {
+      "version": "7.11.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/traverse/-/traverse-7.11.0.tgz",
+      "integrity": "sha1-m5ls4bmPU/fD5BdRFWBdVu0H3SQ=",
+      "requires": {
+        "@babel/code-frame": "^7.10.4",
+        "@babel/generator": "^7.11.0",
+        "@babel/helper-function-name": "^7.10.4",
+        "@babel/helper-split-export-declaration": "^7.11.0",
+        "@babel/parser": "^7.11.0",
+        "@babel/types": "^7.11.0",
+        "debug": "^4.1.0",
+        "globals": "^11.1.0",
+        "lodash": "^4.17.19"
+      },
+      "dependencies": {
+        "debug": {
+          "version": "4.1.1",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/debug/-/debug-4.1.1.tgz",
+          "integrity": "sha1-O3ImAlUQnGtYnO4FDx1RYTlmR5E=",
+          "requires": {
+            "ms": "^2.1.1"
+          }
+        },
+        "globals": {
+          "version": "11.12.0",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/globals/-/globals-11.12.0.tgz",
+          "integrity": "sha1-q4eVM4hooLq9hSV1gBjCp+uVxC4="
+        },
+        "ms": {
+          "version": "2.1.2",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/ms/-/ms-2.1.2.tgz",
+          "integrity": "sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk="
+        }
+      }
+    },
+    "@babel/types": {
+      "version": "7.11.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@babel/types/-/types-7.11.0.tgz",
+      "integrity": "sha1-Kua/G6mujDxDgk5YYSaYcbIG6Q0=",
+      "requires": {
+        "@babel/helper-validator-identifier": "^7.10.4",
+        "lodash": "^4.17.19",
+        "to-fast-properties": "^2.0.0"
+      },
+      "dependencies": {
+        "to-fast-properties": {
+          "version": "2.0.0",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/to-fast-properties/-/to-fast-properties-2.0.0.tgz",
+          "integrity": "sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4="
+        }
+      }
+    },
+    "@emotion/is-prop-valid": {
+      "version": "0.8.8",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz",
+      "integrity": "sha1-2yixxDaKJZtgqXMR1qlS1P0BrBo=",
+      "requires": {
+        "@emotion/memoize": "0.7.4"
+      }
+    },
+    "@emotion/memoize": {
+      "version": "0.7.4",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@emotion/memoize/-/memoize-0.7.4.tgz",
+      "integrity": "sha1-Gb8PWvGRSREcQNmLsM+CEZ9dnus="
+    },
+    "@emotion/stylis": {
+      "version": "0.8.5",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@emotion/stylis/-/stylis-0.8.5.tgz",
+      "integrity": "sha1-3qyzib1u530ef8rMzp4WxcfnjgQ="
+    },
+    "@emotion/unitless": {
+      "version": "0.7.5",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@emotion/unitless/-/unitless-0.7.5.tgz",
+      "integrity": "sha1-dyESkcGQCnALinjPr9oxYNdpSe0="
     },
     "@fluentui/date-time-utilities": {
       "version": "7.4.1",
@@ -1516,6 +1663,11 @@
         "isomorphic-fetch": "^2.2.1"
       }
     },
+    "@microsoft/microsoft-graph-types": {
+      "version": "1.1.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@microsoft/microsoft-graph-types/-/microsoft-graph-types-1.1.0.tgz",
+      "integrity": "sha1-CGRuRpJHpBRMcVFhoQgTh63nzTs="
+    },
     "@microsoft/node-core-library": {
       "version": "3.15.1",
       "resolved": "https://registry.npmjs.org/@microsoft/node-core-library/-/node-core-library-3.15.1.tgz",
@@ -2595,6 +2747,326 @@
       "integrity": "sha512-NsEzBVa5aMgn/n79piyJtpUQFzJ97tB2R2r8PSJlLnMA6LJmchKuv7ATN+/nZH/3QRd/+uFXEq07/i/ajsqVGQ==",
       "dev": true
     },
+    "@syncfusion/ej2-base": {
+      "version": "18.2.47",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-base/-/ej2-base-18.2.47.tgz",
+      "integrity": "sha1-oRrAYxSbRAhedduu1kut7+URd9U=",
+      "requires": {
+        "@syncfusion/ej2-icons": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-buttons": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-buttons/-/ej2-buttons-18.2.44.tgz",
+      "integrity": "sha1-7OsMtFvgWj23ZlrONRBMaYuaRsY=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-calendars": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-calendars/-/ej2-calendars-18.2.44.tgz",
+      "integrity": "sha1-ZulUIJ+22jkB8GrTQFEAoxPYPyQ=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44",
+        "@syncfusion/ej2-buttons": "~18.2.44",
+        "@syncfusion/ej2-inputs": "~18.2.44",
+        "@syncfusion/ej2-lists": "~18.2.44",
+        "@syncfusion/ej2-popups": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-compression": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-compression/-/ej2-compression-18.2.48.tgz",
+      "integrity": "sha1-xQgLXA6k2/cOrxH8Xx1g4K9mg64=",
+      "requires": {
+        "@syncfusion/ej2-file-utils": "~18.2.48"
+      }
+    },
+    "@syncfusion/ej2-data": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-data/-/ej2-data-18.2.44.tgz",
+      "integrity": "sha1-dvTqHByyXfdBN1Cx+Lv1CXVsetg=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-dropdowns": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-dropdowns/-/ej2-dropdowns-18.2.48.tgz",
+      "integrity": "sha1-WfIhkQ5xiLjCosWt9bcalTOA/2A=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-data": "~18.2.44",
+        "@syncfusion/ej2-inputs": "~18.2.48",
+        "@syncfusion/ej2-lists": "~18.2.48",
+        "@syncfusion/ej2-navigations": "~18.2.47",
+        "@syncfusion/ej2-popups": "~18.2.46"
+      }
+    },
+    "@syncfusion/ej2-excel-export": {
+      "version": "18.2.45",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-excel-export/-/ej2-excel-export-18.2.45.tgz",
+      "integrity": "sha1-1/NDUrG5hVJ+fBIh0mD7ho0FY3Q=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44",
+        "@syncfusion/ej2-compression": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-file-utils": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-file-utils/-/ej2-file-utils-18.2.48.tgz",
+      "integrity": "sha1-zxL+cq1c+J/gEjFc1FwyGBnEpPY="
+    },
+    "@syncfusion/ej2-grids": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-grids/-/ej2-grids-18.2.48.tgz",
+      "integrity": "sha1-1cPiQqNndH8aoZyWvzysWqo5Qa4=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-buttons": "~18.2.44",
+        "@syncfusion/ej2-calendars": "~18.2.44",
+        "@syncfusion/ej2-compression": "~18.2.48",
+        "@syncfusion/ej2-data": "~18.2.44",
+        "@syncfusion/ej2-dropdowns": "~18.2.48",
+        "@syncfusion/ej2-excel-export": "~18.2.45",
+        "@syncfusion/ej2-file-utils": "~18.2.48",
+        "@syncfusion/ej2-inputs": "~18.2.48",
+        "@syncfusion/ej2-lists": "~18.2.48",
+        "@syncfusion/ej2-navigations": "~18.2.47",
+        "@syncfusion/ej2-pdf-export": "~18.2.45",
+        "@syncfusion/ej2-popups": "~18.2.46",
+        "@syncfusion/ej2-splitbuttons": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-icons": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-icons/-/ej2-icons-18.2.44.tgz",
+      "integrity": "sha1-7epdlFZ0hRF9v5y+E0F+xD2VXQg="
+    },
+    "@syncfusion/ej2-inputs": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-inputs/-/ej2-inputs-18.2.48.tgz",
+      "integrity": "sha1-9RespuFqRB+DXqgqSqrWmOktEEs=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-buttons": "~18.2.44",
+        "@syncfusion/ej2-popups": "~18.2.46",
+        "@syncfusion/ej2-splitbuttons": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-lists": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-lists/-/ej2-lists-18.2.48.tgz",
+      "integrity": "sha1-FcEFbLcEDQjHlZNMiHjhaAi8Mos=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-buttons": "~18.2.44",
+        "@syncfusion/ej2-data": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-navigations": {
+      "version": "18.2.47",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-navigations/-/ej2-navigations-18.2.47.tgz",
+      "integrity": "sha1-WtIg13CaLebzRKv0kxn4GyqTRJw=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-buttons": "~18.2.44",
+        "@syncfusion/ej2-data": "~18.2.44",
+        "@syncfusion/ej2-inputs": "~18.2.47",
+        "@syncfusion/ej2-lists": "~18.2.46",
+        "@syncfusion/ej2-popups": "~18.2.46"
+      }
+    },
+    "@syncfusion/ej2-pdf-export": {
+      "version": "18.2.45",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-pdf-export/-/ej2-pdf-export-18.2.45.tgz",
+      "integrity": "sha1-0Y81ILZ3jX3BgNA3xNqw2YZh8Gk=",
+      "requires": {
+        "@syncfusion/ej2-compression": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-popups": {
+      "version": "18.2.46",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-popups/-/ej2-popups-18.2.46.tgz",
+      "integrity": "sha1-e/0NZMzQ+ox/bKOsd66Ce12IQaM=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44",
+        "@syncfusion/ej2-buttons": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-react-base": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-base/-/ej2-react-base-18.2.44.tgz",
+      "integrity": "sha1-3VPvEG5QUONZzPxjJEefUr6kZjI=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-react-buttons": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-buttons/-/ej2-react-buttons-18.2.44.tgz",
+      "integrity": "sha1-kCyU5RVw4bxrQFeebUmrkpDcTLQ=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44",
+        "@syncfusion/ej2-buttons": "18.2.44",
+        "@syncfusion/ej2-react-base": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-react-dropdowns": {
+      "version": "18.2.59",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-dropdowns/-/ej2-react-dropdowns-18.2.59.tgz",
+      "integrity": "sha1-94cRuWTdJjTFG2Kdite1dtApHbc=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.59",
+        "@syncfusion/ej2-dropdowns": "18.2.59",
+        "@syncfusion/ej2-react-base": "~18.2.55"
+      },
+      "dependencies": {
+        "@syncfusion/ej2-base": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-base/-/ej2-base-18.2.59.tgz",
+          "integrity": "sha1-ExfYAbZ0I+/cQ4bGA7PDTTV1gzo=",
+          "requires": {
+            "@syncfusion/ej2-icons": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-buttons": {
+          "version": "18.2.58",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-buttons/-/ej2-buttons-18.2.58.tgz",
+          "integrity": "sha1-9nn42wD6016odjZehuVxNM6CjO4=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.57"
+          }
+        },
+        "@syncfusion/ej2-data": {
+          "version": "18.2.54",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-data/-/ej2-data-18.2.54.tgz",
+          "integrity": "sha1-bOwa0Oq9nay4gQc2H5aFUdw5Vg0=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-dropdowns": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-dropdowns/-/ej2-dropdowns-18.2.59.tgz",
+          "integrity": "sha1-AeJ5a2VMeBOblKwE7OMaDTGjdzc=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.59",
+            "@syncfusion/ej2-data": "~18.2.54",
+            "@syncfusion/ej2-inputs": "~18.2.59",
+            "@syncfusion/ej2-lists": "~18.2.59",
+            "@syncfusion/ej2-navigations": "~18.2.58",
+            "@syncfusion/ej2-popups": "~18.2.57"
+          }
+        },
+        "@syncfusion/ej2-icons": {
+          "version": "18.2.54",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-icons/-/ej2-icons-18.2.54.tgz",
+          "integrity": "sha1-PiiJbax4Gq0tM0DKjjOq3Y1SGvc="
+        },
+        "@syncfusion/ej2-inputs": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-inputs/-/ej2-inputs-18.2.59.tgz",
+          "integrity": "sha1-loGkjO0k1geEUCGIjtKfE42vho8=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.59",
+            "@syncfusion/ej2-buttons": "~18.2.58",
+            "@syncfusion/ej2-popups": "~18.2.57",
+            "@syncfusion/ej2-splitbuttons": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-lists": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-lists/-/ej2-lists-18.2.59.tgz",
+          "integrity": "sha1-1Avy/gTL1/InHwrzcHvMfJJ70RQ=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.59",
+            "@syncfusion/ej2-buttons": "~18.2.58",
+            "@syncfusion/ej2-data": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-navigations": {
+          "version": "18.2.58",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-navigations/-/ej2-navigations-18.2.58.tgz",
+          "integrity": "sha1-0zcWzzrY65P2c/VIBxzk5wX1qhs=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.57",
+            "@syncfusion/ej2-buttons": "~18.2.58",
+            "@syncfusion/ej2-data": "~18.2.54",
+            "@syncfusion/ej2-inputs": "~18.2.58",
+            "@syncfusion/ej2-lists": "~18.2.58",
+            "@syncfusion/ej2-popups": "~18.2.58"
+          },
+          "dependencies": {
+            "@syncfusion/ej2-popups": {
+              "version": "18.2.58",
+              "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-popups/-/ej2-popups-18.2.58.tgz",
+              "integrity": "sha1-iimEjdI0rdcx/6Kr3RcVhIGdLDo=",
+              "requires": {
+                "@syncfusion/ej2-base": "~18.2.57",
+                "@syncfusion/ej2-buttons": "~18.2.58"
+              }
+            }
+          }
+        },
+        "@syncfusion/ej2-popups": {
+          "version": "18.2.57",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-popups/-/ej2-popups-18.2.57.tgz",
+          "integrity": "sha1-zV2+Rz7mw2TBLvP7z/NRtFqDT4Y=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.57",
+            "@syncfusion/ej2-buttons": "~18.2.58"
+          }
+        },
+        "@syncfusion/ej2-react-base": {
+          "version": "18.2.55",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-base/-/ej2-react-base-18.2.55.tgz",
+          "integrity": "sha1-Pk7JjHfUq3WGzExR9Vu52cRgybc=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.55"
+          }
+        },
+        "@syncfusion/ej2-splitbuttons": {
+          "version": "18.2.54",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-18.2.54.tgz",
+          "integrity": "sha1-7CrZaSop7LE66AOEdcqOp7f+OEE=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.54",
+            "@syncfusion/ej2-popups": "~18.2.54"
+          }
+        }
+      }
+    },
+    "@syncfusion/ej2-react-grids": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-grids/-/ej2-react-grids-18.2.48.tgz",
+      "integrity": "sha1-io4bT6WL7w8wK134uTcGv9V1dR8=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-grids": "18.2.48",
+        "@syncfusion/ej2-react-base": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-react-inputs": {
+      "version": "18.2.48",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-inputs/-/ej2-react-inputs-18.2.48.tgz",
+      "integrity": "sha1-/ODSDO0SLImH0CMtdKGvWNci488=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.47",
+        "@syncfusion/ej2-inputs": "18.2.48",
+        "@syncfusion/ej2-react-base": "~18.2.44"
+      }
+    },
+    "@syncfusion/ej2-splitbuttons": {
+      "version": "18.2.44",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-18.2.44.tgz",
+      "integrity": "sha1-MpEy4rtTmnqqP+oUv1bjm7CIIic=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.44",
+        "@syncfusion/ej2-popups": "~18.2.44"
+      }
+    },
     "@types/adal-angular": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/@types/adal-angular/-/adal-angular-1.0.1.tgz",
@@ -2711,6 +3183,11 @@
       "requires": {
         "@types/node": "*"
       }
+    },
+    "@types/microsoft-ajax": {
+      "version": "0.0.35",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@types/microsoft-ajax/-/microsoft-ajax-0.0.35.tgz",
+      "integrity": "sha1-JmRjm/F1TIN22hqbJePV7/9itF4="
     },
     "@types/mime": {
       "version": "2.0.3",
@@ -2851,6 +3328,14 @@
       "requires": {
         "@types/express-serve-static-core": "*",
         "@types/mime": "*"
+      }
+    },
+    "@types/sharepoint": {
+      "version": "2013.1.9",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@types/sharepoint/-/sharepoint-2013.1.9.tgz",
+      "integrity": "sha1-i+YqG22/4L+d/I4P7RJRmaNvtg0=",
+      "requires": {
+        "@types/microsoft-ajax": "*"
       }
     },
     "@types/source-list-map": {
@@ -4195,6 +4680,22 @@
       "integrity": "sha1-5h+uBaHKiAGq3uV6bWa4zvr0QWc=",
       "dev": true
     },
+    "babel-plugin-styled-components": {
+      "version": "1.11.1",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/babel-plugin-styled-components/-/babel-plugin-styled-components-1.11.1.tgz",
+      "integrity": "sha1-Upap5VfXNsMYa+B5//J8ZmXWPXY=",
+      "requires": {
+        "@babel/helper-annotate-as-pure": "^7.0.0",
+        "@babel/helper-module-imports": "^7.0.0",
+        "babel-plugin-syntax-jsx": "^6.18.0",
+        "lodash": "^4.17.11"
+      }
+    },
+    "babel-plugin-syntax-jsx": {
+      "version": "6.18.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz",
+      "integrity": "sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY="
+    },
     "babel-plugin-syntax-object-rest-spread": {
       "version": "6.13.0",
       "resolved": "https://registry.npmjs.org/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz",
@@ -4849,6 +5350,11 @@
         }
       }
     },
+    "camelize": {
+      "version": "1.0.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/camelize/-/camelize-1.0.0.tgz",
+      "integrity": "sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs="
+    },
     "caniuse-api": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/caniuse-api/-/caniuse-api-3.0.0.tgz",
@@ -4896,7 +5402,6 @@
       "version": "2.4.2",
       "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz",
       "integrity": "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==",
-      "dev": true,
       "requires": {
         "ansi-styles": "^3.2.1",
         "escape-string-regexp": "^1.0.5",
@@ -4907,7 +5412,6 @@
           "version": "3.2.1",
           "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-3.2.1.tgz",
           "integrity": "sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==",
-          "dev": true,
           "requires": {
             "color-convert": "^1.9.0"
           }
@@ -4916,7 +5420,6 @@
           "version": "5.5.0",
           "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-5.5.0.tgz",
           "integrity": "sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==",
-          "dev": true,
           "requires": {
             "has-flag": "^3.0.0"
           }
@@ -5150,7 +5653,6 @@
       "version": "1.9.3",
       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-1.9.3.tgz",
       "integrity": "sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==",
-      "dev": true,
       "requires": {
         "color-name": "1.1.3"
       }
@@ -5158,8 +5660,7 @@
     "color-name": {
       "version": "1.1.3",
       "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz",
-      "integrity": "sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=",
-      "dev": true
+      "integrity": "sha1-p9BVi9icQveV3UIyj3QIMcpTvCU="
     },
     "color-string": {
       "version": "1.5.3",
@@ -5462,6 +5963,11 @@
         "randomfill": "^1.0.3"
       }
     },
+    "css-color-keywords": {
+      "version": "1.0.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/css-color-keywords/-/css-color-keywords-1.0.0.tgz",
+      "integrity": "sha1-/qJhbcZ2spYmhrOvjb2+GAskTgU="
+    },
     "css-color-names": {
       "version": "0.0.4",
       "resolved": "https://registry.npmjs.org/css-color-names/-/css-color-names-0.0.4.tgz",
@@ -5676,6 +6182,23 @@
       "requires": {
         "cssesc": "^3.0.0",
         "fastparse": "^1.1.2"
+      }
+    },
+    "css-to-react-native": {
+      "version": "3.0.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/css-to-react-native/-/css-to-react-native-3.0.0.tgz",
+      "integrity": "sha1-YtvmeAcqgkpom8/uAR/JbgKn11Y=",
+      "requires": {
+        "camelize": "^1.0.0",
+        "css-color-keywords": "^1.0.0",
+        "postcss-value-parser": "^4.0.2"
+      },
+      "dependencies": {
+        "postcss-value-parser": {
+          "version": "4.1.0",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz",
+          "integrity": "sha1-RD9qIM7WSBor2k+oUypuVdeJoss="
+        }
       }
     },
     "css-tree": {
@@ -6591,8 +7114,7 @@
     "escape-string-regexp": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz",
-      "integrity": "sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=",
-      "dev": true
+      "integrity": "sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ="
     },
     "escodegen": {
       "version": "1.14.3",
@@ -8403,8 +8925,7 @@
     "has-flag": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-3.0.0.tgz",
-      "integrity": "sha1-tdRU3CGZriJWmfNGfloH87lVuv0=",
-      "dev": true
+      "integrity": "sha1-tdRU3CGZriJWmfNGfloH87lVuv0="
     },
     "has-gulplog": {
       "version": "0.1.0",
@@ -8520,6 +9041,14 @@
         "hash.js": "^1.0.3",
         "minimalistic-assert": "^1.0.0",
         "minimalistic-crypto-utils": "^1.0.1"
+      }
+    },
+    "hoist-non-react-statics": {
+      "version": "3.3.2",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz",
+      "integrity": "sha1-7OCsr3HWLClpwuxZ/v9CpLGoW0U=",
+      "requires": {
+        "react-is": "^16.7.0"
       }
     },
     "home-or-tmp": {
@@ -11198,8 +11727,7 @@
     "lodash": {
       "version": "4.17.19",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.19.tgz",
-      "integrity": "sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==",
-      "dev": true
+      "integrity": "sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ=="
     },
     "lodash._basecopy": {
       "version": "3.0.1",
@@ -14671,6 +15199,11 @@
         "safe-buffer": "^5.0.1"
       }
     },
+    "shallowequal": {
+      "version": "1.1.0",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/shallowequal/-/shallowequal-1.1.0.tgz",
+      "integrity": "sha1-GI1SHelbkIdAT9TctosT3wrk5/g="
+    },
     "shebang-command": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-1.2.0.tgz",
@@ -14888,6 +15421,15 @@
       "resolved": "https://registry.npmjs.org/source-map-url/-/source-map-url-0.4.0.tgz",
       "integrity": "sha1-PpNdfd1zYxuXZZlW1VEo6HtQhKM=",
       "dev": true
+    },
+    "sp-pnp-js": {
+      "version": "3.0.10",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/sp-pnp-js/-/sp-pnp-js-3.0.10.tgz",
+      "integrity": "sha1-Rm180DEgkNbEXTH20azoAgW9QjA=",
+      "requires": {
+        "@microsoft/microsoft-graph-types": "1.1.0",
+        "@types/sharepoint": "2013.1.9"
+      }
     },
     "sparkles": {
       "version": "1.0.1",
@@ -15217,6 +15759,33 @@
       "dev": true,
       "requires": {
         "get-stdin": "^4.0.1"
+      }
+    },
+    "styled-components": {
+      "version": "5.1.1",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/styled-components/-/styled-components-5.1.1.tgz",
+      "integrity": "sha1-lt+wKoAleUlghjuejjZeO2vlUY0=",
+      "requires": {
+        "@babel/helper-module-imports": "^7.0.0",
+        "@babel/traverse": "^7.4.5",
+        "@emotion/is-prop-valid": "^0.8.8",
+        "@emotion/stylis": "^0.8.4",
+        "@emotion/unitless": "^0.7.4",
+        "babel-plugin-styled-components": ">= 1",
+        "css-to-react-native": "^3.0.0",
+        "hoist-non-react-statics": "^3.0.0",
+        "shallowequal": "^1.1.0",
+        "supports-color": "^5.5.0"
+      },
+      "dependencies": {
+        "supports-color": {
+          "version": "5.5.0",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/supports-color/-/supports-color-5.5.0.tgz",
+          "integrity": "sha1-4uaaRKyHcveKHsCzW2id9lMO/I8=",
+          "requires": {
+            "has-flag": "^3.0.0"
+          }
+        }
       }
     },
     "stylehacks": {

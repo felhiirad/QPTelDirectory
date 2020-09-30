@@ -21,7 +21,9 @@ export default class QpTelephoneDirectoryAppWebPart extends BaseClientSideWebPar
     const element: React.ReactElement<IQpTelephoneDirectoryAppProps> = React.createElement(
       QpTelephoneDirectoryApp,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        context: this.context,
+        siteUrl : this.context.pageContext.web.absoluteUrl
       }
     );
 
