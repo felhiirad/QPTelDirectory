@@ -1,16 +1,16 @@
 export interface Employees {
-  EMPLOYEE_ID: number;
-  FIRST: string;
-  LAST: string;
-  FULL_NAME: string;
-  PHOTO: string;
-  EMAIL: string;
-  HIRE_DATE: Date;
-  WORK_LOCATION: string;
-  LANDLINE: number;
-  MOBILE_PHONE: number;
-  REFERENCE_INDICATOR: string;
-  END_DATE: Date;
+  Staff_No: number;
+  First_Name: string;
+  Last_Name: string;
+  Full_Name: string;
+  Position: string;
+  Gender: string;
+  Photo: string;
+  Email: string;
+  Mobile_No: number;
+  Office_Phone_No_1: number;
+  Department: number;
+  Reference_Indicator: string;
   SUPERVISOR: Employees;
   SUBORDINATES: Employees[];
 }

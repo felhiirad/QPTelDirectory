@@ -20,6 +20,7 @@
     "@syncfusion/ej2-base": "^18.2.47",
     "@syncfusion/ej2-data": "^18.2.44",
     "@syncfusion/ej2-react-buttons": "^18.2.44",
+    "@syncfusion/ej2-react-dropdowns": "^18.2.59",
     "@syncfusion/ej2-react-grids": "^18.2.48",
     "@syncfusion/ej2-react-inputs": "^18.2.48",
     "@types/es6-promise": "0.0.33",

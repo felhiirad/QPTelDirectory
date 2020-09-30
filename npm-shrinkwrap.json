@@ -2913,6 +2913,131 @@
         "@syncfusion/ej2-react-base": "~18.2.44"
       }
     },
+    "@syncfusion/ej2-react-dropdowns": {
+      "version": "18.2.59",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-dropdowns/-/ej2-react-dropdowns-18.2.59.tgz",
+      "integrity": "sha1-94cRuWTdJjTFG2Kdite1dtApHbc=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.2.59",
+        "@syncfusion/ej2-dropdowns": "18.2.59",
+        "@syncfusion/ej2-react-base": "~18.2.55"
+      },
+      "dependencies": {
+        "@syncfusion/ej2-base": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-base/-/ej2-base-18.2.59.tgz",
+          "integrity": "sha1-ExfYAbZ0I+/cQ4bGA7PDTTV1gzo=",
+          "requires": {
+            "@syncfusion/ej2-icons": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-buttons": {
+          "version": "18.2.58",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-buttons/-/ej2-buttons-18.2.58.tgz",
+          "integrity": "sha1-9nn42wD6016odjZehuVxNM6CjO4=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.57"
+          }
+        },
+        "@syncfusion/ej2-data": {
+          "version": "18.2.54",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-data/-/ej2-data-18.2.54.tgz",
+          "integrity": "sha1-bOwa0Oq9nay4gQc2H5aFUdw5Vg0=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-dropdowns": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-dropdowns/-/ej2-dropdowns-18.2.59.tgz",
+          "integrity": "sha1-AeJ5a2VMeBOblKwE7OMaDTGjdzc=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.59",
+            "@syncfusion/ej2-data": "~18.2.54",
+            "@syncfusion/ej2-inputs": "~18.2.59",
+            "@syncfusion/ej2-lists": "~18.2.59",
+            "@syncfusion/ej2-navigations": "~18.2.58",
+            "@syncfusion/ej2-popups": "~18.2.57"
+          }
+        },
+        "@syncfusion/ej2-icons": {
+          "version": "18.2.54",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-icons/-/ej2-icons-18.2.54.tgz",
+          "integrity": "sha1-PiiJbax4Gq0tM0DKjjOq3Y1SGvc="
+        },
+        "@syncfusion/ej2-inputs": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-inputs/-/ej2-inputs-18.2.59.tgz",
+          "integrity": "sha1-loGkjO0k1geEUCGIjtKfE42vho8=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.59",
+            "@syncfusion/ej2-buttons": "~18.2.58",
+            "@syncfusion/ej2-popups": "~18.2.57",
+            "@syncfusion/ej2-splitbuttons": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-lists": {
+          "version": "18.2.59",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-lists/-/ej2-lists-18.2.59.tgz",
+          "integrity": "sha1-1Avy/gTL1/InHwrzcHvMfJJ70RQ=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.59",
+            "@syncfusion/ej2-buttons": "~18.2.58",
+            "@syncfusion/ej2-data": "~18.2.54"
+          }
+        },
+        "@syncfusion/ej2-navigations": {
+          "version": "18.2.58",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-navigations/-/ej2-navigations-18.2.58.tgz",
+          "integrity": "sha1-0zcWzzrY65P2c/VIBxzk5wX1qhs=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.57",
+            "@syncfusion/ej2-buttons": "~18.2.58",
+            "@syncfusion/ej2-data": "~18.2.54",
+            "@syncfusion/ej2-inputs": "~18.2.58",
+            "@syncfusion/ej2-lists": "~18.2.58",
+            "@syncfusion/ej2-popups": "~18.2.58"
+          },
+          "dependencies": {
+            "@syncfusion/ej2-popups": {
+              "version": "18.2.58",
+              "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-popups/-/ej2-popups-18.2.58.tgz",
+              "integrity": "sha1-iimEjdI0rdcx/6Kr3RcVhIGdLDo=",
+              "requires": {
+                "@syncfusion/ej2-base": "~18.2.57",
+                "@syncfusion/ej2-buttons": "~18.2.58"
+              }
+            }
+          }
+        },
+        "@syncfusion/ej2-popups": {
+          "version": "18.2.57",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-popups/-/ej2-popups-18.2.57.tgz",
+          "integrity": "sha1-zV2+Rz7mw2TBLvP7z/NRtFqDT4Y=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.57",
+            "@syncfusion/ej2-buttons": "~18.2.58"
+          }
+        },
+        "@syncfusion/ej2-react-base": {
+          "version": "18.2.55",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-base/-/ej2-react-base-18.2.55.tgz",
+          "integrity": "sha1-Pk7JjHfUq3WGzExR9Vu52cRgybc=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.55"
+          }
+        },
+        "@syncfusion/ej2-splitbuttons": {
+          "version": "18.2.54",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-18.2.54.tgz",
+          "integrity": "sha1-7CrZaSop7LE66AOEdcqOp7f+OEE=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.2.54",
+            "@syncfusion/ej2-popups": "~18.2.54"
+          }
+        }
+      }
+    },
     "@syncfusion/ej2-react-grids": {
       "version": "18.2.48",
       "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-grids/-/ej2-react-grids-18.2.48.tgz",

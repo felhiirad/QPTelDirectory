@@ -22,7 +22,8 @@ export default class QpTelephoneDirectoryAppWebPart extends BaseClientSideWebPar
       QpTelephoneDirectoryApp,
       {
         description: this.properties.description,
-        context: this.context
+        context: this.context,
+        siteUrl : this.context.pageContext.web.absoluteUrl
       }
     );
 
