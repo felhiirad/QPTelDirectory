@@ -1,16 +1,16 @@
 import React, { FC, useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
-import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection, Search, Toolbar } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection, Search, Toolbar, SearchSettingsModel } from '@syncfusion/ej2-react-grids';
 
-import '../../../../node_modules/@syncfusion/ej2-base/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-buttons/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-calendars/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-inputs/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-navigations/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-popups/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
-import '../../../../node_modules/@syncfusion/ej2-react-grids/styles/material.css';
+require('../../../../node_modules/@syncfusion/ej2-base/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-buttons/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-calendars/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-inputs/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-navigations/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-popups/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/material.css');
 
 import { IQpTelephoneDirectoryAppProps } from './IQpTelephoneDirectoryAppProps';
 import { getAllEmployees, getFirstViewEmployees, getSecondViewEmployees } from '../services/QpTelephoneDirectoryServices';
@@ -25,10 +25,15 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 
 	const [isLoading, setLoading] = useState<boolean>(true);
   const [employees, setEmployees] = useState<Employees[]>(undefined);
+  const [querySearch, setQuerySearch] = useState<string>("");
 
   var gridInstance: GridComponent;
   const filter: any = {
     type: 'Menu'
+  };
+
+  var searchOptions: SearchSettingsModel = {
+    key: querySearch,
   };
 
   const photoTemplate = (employee): any => {
@@ -43,6 +48,8 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
   };
 
 	useEffect(() => {
+    var query = new URLSearchParams(window.location.search).get("query");
+    if(query != null) setQuerySearch(query);
 		getAllEmployees(props.siteUrl).then((items: Employees[]) => {
 			setEmployees(items);
 			setLoading(false);
@@ -51,7 +58,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 
 	return (
 		<MainWrapper>
-			{employees && <GridComponent
+			<GridComponent
 				dataSource={employees}
         enableHover={false}
         ref={(g) => { gridInstance = g; }}
@@ -61,6 +68,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 				allowFiltering={true}
         allowSorting={true}
         toolbar={['Search']}
+        searchSettings={searchOptions}
 			>
 				<ColumnsDirective>
           <ColumnDirective headerText="Photo"  allowSorting={false} allowFiltering={false}  template={photoTemplate} />
@@ -72,7 +80,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 					<ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
 				</ColumnsDirective>
 				<Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
-			</GridComponent>}
+			</GridComponent>
 		</MainWrapper>
 	);
 };
