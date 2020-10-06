@@ -9,10 +9,28 @@
           "manifest": "./src/webparts/qpTelephoneDirectoryApp/QpTelephoneDirectoryAppWebPart.manifest.json"
         }
       ]
+    },
+    "telephone-directory-search-zone-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/telephoneDirectorySearchZone/TelephoneDirectorySearchZoneWebPart.js",
+          "manifest": "./src/webparts/telephoneDirectorySearchZone/TelephoneDirectorySearchZoneWebPart.manifest.json"
+        }
+      ]
+    },
+    "global-search-extension-application-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/globalSearchExtension/GlobalSearchExtensionApplicationCustomizer.js",
+          "manifest": "./src/extensions/globalSearchExtension/GlobalSearchExtensionApplicationCustomizer.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "QpTelephoneDirectoryAppWebPartStrings": "lib/webparts/qpTelephoneDirectoryApp/loc/{locale}.js"
+    "QpTelephoneDirectoryAppWebPartStrings": "lib/webparts/qpTelephoneDirectoryApp/loc/{locale}.js",
+    "TelephoneDirectorySearchZoneWebPartStrings": "lib/webparts/telephoneDirectorySearchZone/loc/{locale}.js",
+    "GlobalSearchExtensionApplicationCustomizerStrings": "lib/extensions/globalSearchExtension/loc/{locale}.js"
   }
 }

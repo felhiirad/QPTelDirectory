@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ClientSideComponentInstance
+        Title="GlobalSearchExtension"
+        Location="ClientSideExtension.ApplicationCustomizer"
+        ComponentId="abcf79f7-c6e5-4589-98b2-aadec1285967"
+        Properties="{&quot;testMessage&quot;:&quot;Test message&quot;}">
+    </ClientSideComponentInstance>
+</Elements>
