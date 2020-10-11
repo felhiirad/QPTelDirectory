@@ -13,9 +13,9 @@ require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.c
 require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/material.css');
 
 import { IQpTelephoneDirectoryAppProps } from './IQpTelephoneDirectoryAppProps';
-import { getAllEmployees, getFirstViewEmployees, getSecondViewEmployees } from '../services/QpTelephoneDirectoryServices';
+import { getAllEmployees, getEmployeeSubordinates, getEmployeeLeaves } from '../services/QpTelephoneDirectoryServices';
 import { Employees } from '../entities/IEmployees';
-import {GlobalLoader} from '../tools/GlobalLoader';
+import { GlobalLoader } from '../tools/GlobalLoader';
 
 const MainWrapper = styled.div`
 	padding: 1rem;
@@ -23,7 +23,7 @@ const MainWrapper = styled.div`
 
 export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props => {
 
-	const [isLoading, setLoading] = useState<boolean>(true);
+  const [isLoading, setLoading] = useState<boolean>(true);
   const [employees, setEmployees] = useState<Employees[]>(undefined);
   const [querySearch, setQuerySearch] = useState<string>("");
 
@@ -47,42 +47,42 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
     </div>);
   };
 
-	useEffect(() => {
+  useEffect(() => {
     var query = new URLSearchParams(window.location.search).get("query");
-    if(query != null) setQuerySearch(query);
-		getAllEmployees(props.siteUrl).then((items: Employees[]) => {
-			setEmployees(items);
-			setLoading(false);
-		});
+    if (query != null) setQuerySearch(query);
+    getAllEmployees(props.siteUrl).then((items: Employees[]) => {
+      setEmployees(items);
+      setLoading(false);
+    });
   }, []);
 
-	return (
-		<MainWrapper>
-			<GridComponent
-				dataSource={employees}
+  return (
+    <MainWrapper>
+      <GridComponent
+        dataSource={employees}
         enableHover={false}
         ref={(g) => { gridInstance = g; }}
-				allowSelection={true}
+        allowSelection={true}
         allowPaging={true}
         filterSettings={filter}
-				allowFiltering={true}
+        allowFiltering={true}
         allowSorting={true}
         toolbar={['Search']}
         searchSettings={searchOptions}
-			>
-				<ColumnsDirective>
-          <ColumnDirective headerText="Photo"  allowSorting={false} allowFiltering={false}  template={photoTemplate} />
-					<ColumnDirective field="Full_Name" headerText="Name"  clipMode='EllipsisWithTooltip' />
-					<ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
-					<ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
-					<ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
-					<ColumnDirective field="Mobile_No" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
-					<ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
-				</ColumnsDirective>
-				<Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
-			</GridComponent>
-		</MainWrapper>
-	);
+      >
+        <ColumnsDirective>
+          <ColumnDirective headerText="Photo" allowSorting={false} allowFiltering={false} template={photoTemplate} />
+          <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' />
+          <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
+          <ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
+          <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
+          <ColumnDirective field="Mobile_No" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
+          <ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
+        </ColumnsDirective>
+        <Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
+      </GridComponent>
+    </MainWrapper>
+  );
 };
 
 export default QpTelephoneDirectoryApp;

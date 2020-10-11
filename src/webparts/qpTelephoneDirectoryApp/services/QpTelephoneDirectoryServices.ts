@@ -1,47 +1,72 @@
 import { Web } from "sp-pnp-js";
 import { listsName, listViews } from "../constants/lists";
 import { Employees } from "../entities/IEmployees";
+import { ICamlQuery } from "@pnp/sp/lists";
 
-export const getAllEmployees = (siteUrl : string): Promise<Employees[]> => {
+export const getAllEmployees = (siteUrl: string): Promise<Employees[]> => {
   var web = new Web(siteUrl);
   return web.lists.getByTitle(listsName.employees).items.top(5000).get().then((items: Employees[]) => {
     return items;
   });
+
+
 };
 
-export const getFirstViewEmployees = (siteUrl : string): Promise<Employees[]> => {
+//TOBE Merged
+export const getEmployeeSubordinates = (siteUrl: string, Emp_item_Id: number): Promise<Employees[]> => {
   var web = new Web(siteUrl);
-  var list = web.lists.getByTitle(listsName.employees);
-  return list.views.getByTitle(listViews.firstItems)  .get().then((items: Employees[]) => {
+  //Caml query object NB : without RowLimit Paged="TRUE">5000  results will be null
+  const xml = "<View><Query><Where><Eq><FieldRef Name='Supervisor_ID' /><Value Type='Number'>101</Value></Eq></Where></Query><RowLimit Paged='TRUE'>5000</RowLimit></View>";
+  const q: ICamlQuery = {
+    ViewXml: xml,
+  };
+
+  return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((items: Employees[]) => {
+    console.log(items);
     return items;
+  });
+
+};
+
+//TOBE Merged
+export const getEmployeeLeaves = (siteUrl: string, Emp_item_Id: number): Promise<Employees[]> => {
+  var web = new Web(siteUrl);
+  // Caml query object
+  const xml = "<Query><Where><Eq><FieldRef Name='Staff_No' /><Value Type='Number'>100</Value></Eq></Where></Query>";
+  const q: ICamlQuery = {
+    ViewXml: xml,
+  };
+
+  return web.lists.getByTitle(listsName.delegations).getItemsByCAMLQuery(q).then((items: Employees[]) => {
+    console.log(items);
+    return items
+  });
+  ;
+};
+
+//TOBE Merged
+export const getEmployeePhoto = async (siteUrl: string, Emp_item_Id: number): Promise<any> => {
+  var web = new Web(siteUrl);
+  let PhotoURL: string;
+  return web.lists.getByTitle(listsName.employees).items.getById(Emp_item_Id).attachmentFiles.get().then((attachs) => {
+    PhotoURL = attachs.length != 0 ? siteUrl.split("/sites")[0] + attachs[0].ServerRelativeUrl : "";
+    return PhotoURL;
   });
 };
 
-export const getSecondViewEmployees = (siteUrl : string): Promise<Employees[]> => {
+//TOBE Merged
+export const getAllEmployeesInfo = (siteUrl: string): Promise<Employees[]> => {
   var web = new Web(siteUrl);
-  var list = web.lists.getByTitle(listsName.employees);
-  return list.views.getByTitle(listViews.secondItems).get().then((items: Employees[]) => {
-    return items;
+  var AllEmp: Employees[];
+  return web.lists.getByTitle(listsName.employees).items.top(5000).get().then(async (items1: Employees[]) => {
+    AllEmp = items1;
+    console.log(AllEmp.length);
+    return web.lists.getByTitle(listsName.employees).items.skip(5000).top(5000).get().then(async (items: Employees[]) => {
+      let AllEmpResult: Employees[];
+      AllEmpResult = AllEmp.concat(items);
+      return AllEmpResult;
+    });
+
   });
 };
 
-// const getViewQueryForList = (listName:string, viewName:string): Promise<any> => {
-//   let listViewData = "";
-//   if(listName && viewName){
-//       return pnp.sp.web.lists.getByTitle(listName).views.getByTitle(viewName).select("ViewQuery").get().then(v => {
-//           return v.ViewQuery;
-//       });
-//   } else {
-//       console.log('Data insufficient!');
-//       listViewData = "Error";
-//   }
-// };
-
-
-// //Second method that retrieves the View data based on the View Query and List name
-// const getItemsByViewQuery = (listName:string, query:string): Promise<any> => {
-//   const xml = '<View><Query>' + query + '</Query></View>';
-//   return pnp.sp.web.lists.getByTitle(listName).getItemsByCAMLQuery({'ViewXml':xml}).then((res:SPHttpClientResponse) => {
-//       return res;
-//   });
-// };
