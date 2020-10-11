@@ -48,6 +48,12 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
   };
 
   useEffect(() => {
+    getEmployeeSubordinates(props.siteUrl, 101).then((items: Employees[]) => {
+      console.log(items);
+    });
+    getEmployeeLeaves(props.siteUrl, 101).then((items: Employees[]) => {
+      console.log(items);
+    });
     var query = new URLSearchParams(window.location.search).get("query");
     if (query != null) setQuerySearch(query);
     getAllEmployees(props.siteUrl).then((items: Employees[]) => {
