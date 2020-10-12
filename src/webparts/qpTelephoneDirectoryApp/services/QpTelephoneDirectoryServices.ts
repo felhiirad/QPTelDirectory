@@ -1,68 +1,82 @@
-import { Web } from "sp-pnp-js";
-import { listsName, listViews } from "../constants/lists";
+import { Web, CamlQuery } from "sp-pnp-js";
+import { listsName } from "../constants/lists";
 import { Employees } from "../entities/IEmployees";
-import { ICamlQuery } from "@pnp/sp/lists";
 
+const getRecursive = (web, callback, lii = -1, items = []) => {
+  var q = web.lists.getByTitle(listsName.employees).items.top(5000);
+  if (lii !== -1) {
+     q = q.skip(lii);
+  }
+  q.get().then((res) => {
+     if (res.length === 0) {
+        callback(items);
+     } else {
+        items = items.concat(res);
+        getRecursive(web, callback, res[res.length - 1].Id, items);
+     }
+  });
 
-//TOBE Merged
-export const getEmployeeSupervisor = (siteUrl: string, Emp_item_Id: number): Promise<Employees> => {
+};
+
+export const getEmployeeSupervisor = (siteUrl: string, empItemId: number): Promise<Employees> => {
   var web = new Web(siteUrl);
   // Caml query object
   const xml = "<View><Query><Where><Eq><FieldRef Name='Staff_No' /><Value Type='Number'>100</Value></Eq></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
-  const q: ICamlQuery = {
+  const q: CamlQuery = {
     ViewXml: xml,
   };
 
   return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((items: Employees) => {
     console.log(items);
-    return items
+    return items;
   });
-  ;
 };
 
 //TOBE Merged
-export const getEmployeeSubordinates = (siteUrl: string, Emp_item_Id: number): Promise<Employees[]> => {
+export const getEmployeeSubordinates = (siteUrl: string, empItemId: number): Promise<Employees[]> => {
   var web = new Web(siteUrl);
   //Caml query object NB : without RowLimit Paged="TRUE">5000  results will be null
   const xml = "<View><Query><Where><Eq><FieldRef Name='Supervisor_ID' /><Value Type='Number'>101</Value></Eq></Where></Query><RowLimit Paged='TRUE'>5000</RowLimit></View>";
-  const q: ICamlQuery = {
-    ViewXml: xml,
+  const q: CamlQuery = {
+    ViewXml: xml
   };
 
   return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((items: Employees[]) => {
     console.log(items);
     return items;
   });
-
 };
 
-//TOBE Merged
-export const getEmployeeLeaves = (siteUrl: string, Emp_item_Id: number): Promise<Employees[]> => {
+export const getAllEmployees = (siteUrl : string): Promise<Employees[]> => {
+  var web = new Web(siteUrl);
+  return new Promise<Employees[]>((res, rej) => {
+    getRecursive(web, (results) => {
+      res(results);
+    });
+  });
+};
+
+export const getEmployeeLeaves = (siteUrl: string, empItemId: number): Promise<Employees[]> => {
   var web = new Web(siteUrl);
   // Caml query object
   const xml = "<Query><Where><Eq><FieldRef Name='Staff_No' /><Value Type='Number'>100</Value></Eq></Where></Query>";
-  const q: ICamlQuery = {
-    ViewXml: xml,
+  const q: CamlQuery = {
+    ViewXml: xml
   };
 
   return web.lists.getByTitle(listsName.delegations).getItemsByCAMLQuery(q).then((items: Employees[]) => {
     console.log(items);
-    return items
+    return items;
   });
-  ;
 };
 
-//TOBE Merged
-export const getEmployeePhoto = async (siteUrl: string, Emp_item_Id: number): Promise<any> => {
+export const getEmployeePhoto = async (siteUrl: string, empItemId: number): Promise<any> => {
   var web = new Web(siteUrl);
-  let PhotoURL: string;
-  return web.lists.getByTitle(listsName.employees).items.getById(Emp_item_Id).attachmentFiles.get().then((attachs) => {
-    PhotoURL = attachs.length != 0 ? siteUrl.split("/sites")[0] + attachs[0].ServerRelativeUrl : "";
-    return PhotoURL;
+  return web.lists.getByTitle(listsName.employees).items.getById(empItemId).attachmentFiles.get().then((attachs) => {
+    return attachs.length != 0 ? siteUrl.split("/sites")[0] + attachs[0].ServerRelativeUrl : "";
   });
 };
 
-//TOBE Merged
 export const getAllEmployeesInfo = (siteUrl: string): Promise<Employees[]> => {
   var web = new Web(siteUrl);
   var AllEmp: Employees[];

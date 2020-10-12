@@ -11,6 +11,26 @@ export interface Employees {
   Office_Phone_No_1: number;
   Department: number;
   Reference_Indicator: string;
-  SUPERVISOR: Employees;
-  SUBORDINATES: Employees[];
+  //  SUPERVISOR: Employees;
+  //  SUBORDINATES: Employees[];
+  Id: number;
+  Directorate: string;
+  Division: string;
+  Sub_Division: string;
+  Supervisor_ID: number;
+  Subordinate_Display: string; //Y/N
+  Is_Manager: string; //Y/N
+  Employment_Level: string; //ELS /SS
+  Office_Phone_No_2: string;
+  Direct_Office_Phone: string;
+  Fax_No: string;
+  Acting_Staff_No: string;
+  Acting_Position: string;
+  Acting_Position_Department: string;
+  Acting_Reference_Indicator: string;
+  Section: string;
+  Unit: string;
+  Work_Location_City: string;
+  Work_Location_Description: string;
+  Office_Room_No_x002e_: string;
 }

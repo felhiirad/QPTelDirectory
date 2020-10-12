@@ -1,0 +1,475 @@
+@charset "utf-8";
+/* CSS Document */
+
+a {
+color: #00456b;
+}
+.fullcontainer {
+	display: -webkit-flex;
+    display: flex;
+	flex-wrap: wrap;
+	width:  100%;
+	font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
+}
+
+.bodyprofilecontainer{
+	display: -webkit-flex;
+    display: flex;
+	flex-wrap: wrap;
+	max-width:  1050px;
+	height: auto;
+	padding: 5px;
+	background-color: #f8f8f8;
+	-webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.20);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.20);
+    box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.20);
+}
+
+/*Main Profile Card */
+
+.photo{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 5px 15px 10px 5px;
+}
+
+.photo img{
+  width: 100%;
+  height: auto;
+ }
+
+.leftprofilecontainer{
+	display:flex;
+	flex-flow: row wrap;
+	padding: 10px;
+	max-width:630px;
+	height: auto;
+}
+
+.employeebox{
+	max-width: 640px;
+	background-color: #f8f8f8;
+}
+
+
+.employeename{
+	color: #323130;
+	font-size: 1.5rem;
+	width: 500px;
+}
+
+.employeefontdefault{
+	color: #323130;
+	font-size: 1rem;
+	font-weight: 300;
+	}
+
+.actingposition{
+	color:darkred;
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+.employeeaway{
+	color:darkred;
+	font-size: 1rem;
+	font-weight: 500;
+	margin: 2rem 0 0 0;
+}
+
+.horizontalcontact{
+	display:flex;
+	flex-basis: 100%;
+	flex-flow: row wrap;
+	padding: 15px;
+	height: auto;
+	background-color:#f8f8f8;
+}
+
+
+/*Contact Me Card */
+.contactmecontainer{
+	flex-flow: row wrap;
+	padding: 10px 10px 15px 15px;
+	max-width: 366px;
+	height: auto;
+	background-color:#f8f8f8;
+	margin-left: auto;
+}
+
+.profiletitle{
+	color: #323130;
+	font-size: 1.5rem;
+}
+
+.contacttitle{
+	color: #323130;
+	font-size: 1rem;
+	font-weight: 300;
+	padding: 9px;
+	max-width: 280px;
+}
+
+.actionline{
+	display:flex;
+	flex-basis: 100%;
+	flex-flow: row wrap;
+}
+.small_icons{
+	margin: 5px;
+}
+
+.horizontalcontact{
+	width: 100%;
+}
+
+.horizontalborders{
+	display:flex;
+	flex-wrap: row wrap;
+	width: 900px;
+	justify-content: space-between;
+	border-top: 1px solid #49494a;
+	border-bottom: 1px solid #49494a;
+	margin: 0 auto;
+	background: #ebebeb;
+}
+
+.contactbox{
+	align-content: center;
+	padding: 10px;
+	margin: 0 10px 0 10px;
+}
+
+
+
+/* Supervisor Box*/
+
+.supervisorbox{
+	width: 370px;
+	margin-top: 5px;
+	padding: 5px;
+}
+.supervisortitle{
+	color: #323130;
+	font-size: 1.5rem;
+	padding: 5px;
+}
+.supervisorgreybody{
+	display: -webkit-flex;
+    display: flex;
+	flex-wrap: wrap;
+	max-width:  350px;
+	height: auto;
+	padding: 0px;
+	background-color: #f8f8f8;
+}
+.supervisortitlecontainer{
+	display:flex;
+	flex-flow: row wrap;
+	padding: 10px;
+	max-width:350px;
+	height: auto;
+}
+
+.supervisorphoto{
+  position: relative;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 5px 10px 10px 0px;
+}
+
+.supervisorphoto img{
+  width: 100%;
+  height: auto;
+ }
+.supervisordetailsbox{
+	max-width: 260px;
+}
+
+
+.supervisorname{
+	color: #323130;
+	font-size: 1rem;
+	width: 260px;
+}
+
+.supervisorfontdefault{
+	color: #323130;
+	font-size: 0.9rem;
+	font-weight: 300;
+	}
+
+/* Thick red border */
+hr.hrline {
+  border: .5px solid #d3d3d3;
+	width:345px;
+}
+
+
+/* Table */
+.subordinatesbox{
+	width:  600px;
+	margin-top: 5px;
+	padding: 5px;
+}
+.subordinatesgreybody{
+	display: -webkit-flex;
+    display: flex;
+	flex-wrap: wrap;
+	height: auto;
+	padding: 0px;
+	background-color: #f8f8f8;
+}
+.subordinatestitlecontainer{
+	display:flex;
+	flex-flow: row wrap;
+	padding: 10px;
+	height: auto;
+}
+
+table.SPTable {
+  background-color: #EEEEEE;
+  width: 600px;
+  height: 250px;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.SPTable td, table.SPTable th {
+  border: 0px solid #AAAAAA;
+  padding: 3px 5px;
+  font-weight: normal;
+}
+table.SPTable tbody td {
+  font-size: .9rem;
+}
+table.SPTable tr:nth-child(even) {
+  background: #FFFFFF;
+}
+table.SPTable thead {
+  background: #666666;
+
+}
+table.SPTable thead th {
+  font-size: .9rem;
+  color: #F7FAFF;
+  text-align: left;
+  border-left: 2px solid #969696;
+}
+table.SPTable thead th:first-child {
+  border-left: none;
+}
+
+table.SPTable tfoot {
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #F8F8F8;
+}
+table.SPTable tfoot td {
+  font-size: .85rem;
+}
+table.SPTable tfoot .links {
+  text-align: right;
+}
+table.SPTable tfoot .links a{
+  display: inline-block;
+  background: #666666;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  margin-top: 8px;
+  border-radius: 3px;
+  text-decoration:none;
+}
+
+
+
+/* Transitional  view */
+@media screen and (max-width:1060px) {
+.bodyprofilecontainer{
+	max-width:  1060px;
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+.employeename{
+	font-size: 1.3rem;
+	max-width: 450px;
+}
+
+.employeefontdefault{
+	color: #323130;
+	font-size: 0.95rem;
+	font-weight: 300;
+	}
+
+.contactmecontainer{
+	padding: 2px 2px 0px 0px;
+	max-width: 650px;
+	background-color:#f8f8f8;
+	margin-right: auto;
+	}
+
+.supervisortitlecontainer{
+	max-width:350px;
+	height: auto;
+}
+
+table.SPTable {
+  width: 585px;
+}
+.subordinatesbox{
+	width:  605px;
+}
+
+}
+
+/* Tablet view */
+@media screen and (max-width:769px) {
+.bodyprofilecontainer{
+	max-width:  769px;
+	flex-wrap: column wrap;
+	justify-content: flex-start;
+}
+	.contactmecontainer{
+	padding: 10px 10px 15px 15px;
+	width: 700px;
+	height: auto;
+	background-color:#ebebeb;
+}
+.profiletitle{
+	font-size: 1.2rem;
+}
+.contactbox{
+	padding: 5px;
+	margin: 0 5px 0 5px;
+	font-size: 0.95rem;
+}
+.horizontalborders{
+	width: 690px;
+}
+
+.employeefontdefault{
+	max-width: 510px;
+	font-size: 1rem;
+	font-weight: 300;
+	}
+}
+
+
+
+
+
+
+
+/* Mobile view */
+@media screen and (max-width:530px) {
+.bodyprofilecontainer{
+	max-width:  525px;
+}
+.employeename{
+	font-size: 1.3rem;
+	max-width: 450px;
+}
+
+.employeefontdefault{
+	color: #323130;
+	font-size: 0.95rem;
+	font-weight: 300;
+	}
+
+.contactmecontainer{
+	padding: 2px 2px 0px 0px;
+	max-width: 500px;
+	background-color:#f5f5f5;
+	margin-right: auto;
+	}
+.horizontalborders{
+	width: 470px;
+}
+.contactbox{
+	align-content: center;
+	padding: 2px;
+	margin: 0 1px 0 1px;
+	font-size: 0.80rem;
+}
+
+table.SPTable {
+  width: 465px;
+}
+.subordinatesbox{
+	width:  485px;
+}
+
+}
+/* Android Mobile view */
+@media screen and (max-width:360px) {
+.bodyprofilecontainer{
+	max-width:  325px;
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+.employeebox{
+	max-width: 315px;
+	background-color: #f8f8f8;
+}
+.leftprofilecontainer{
+	padding: 5px;
+	max-width:315px;
+}
+.employeeaway{
+	font-size: 0.85rem;
+	max-width: 300px;
+}
+.employeename{
+	font-size: 1.1rem;
+	max-width: 315px;
+	font-weight: 500;
+}
+.actingposition{
+	font-weight: 400;
+}
+.employeefontdefault{
+	color: #323130;
+	font-size: 0.8rem;
+	font-weight: 400;
+	max-width: 315px;
+	}
+
+.contactmecontainer{
+	padding: 2px 2px 0px 0px;
+	max-width: 320px;
+	background-color:#f5f5f5;
+	margin-right: auto;
+	}
+.horizontalborders{
+	flex-flow: wrap;
+	align-content: space-between;
+	width: 300px;
+	height:auto;
+}
+.contactbox{
+	padding: 2px;
+	margin: 0 1px 10px 10px;
+	font-size: 0.80rem;
+	width: 125px;
+}
+
+.supervisortitlecontainer{
+	max-width:300px;
+}
+	hr.hrline {
+	width:300px;
+}
+
+table.SPTable {
+  width: 305px;
+}
+.subordinatesbox{
+	width:  305px;
+	padding: 0px;
+}
+}
