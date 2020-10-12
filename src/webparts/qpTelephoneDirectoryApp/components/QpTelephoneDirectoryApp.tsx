@@ -68,23 +68,23 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 
 	useEffect(() => {
     var query = new URLSearchParams(window.location.search).get("query");
-    if(query != null) setQuerySearch(query);
-		getAllEmployees(props.siteUrl).then((items: Employees[]) => {
-			setEmployees(items);
-			setLoading(false);
-		});
+    if (query != null) setQuerySearch(query);
+    getAllEmployees(props.siteUrl).then((items: Employees[]) => {
+      setEmployees(items);
+      setLoading(false);
+    });
   }, []);
 
-	return (
-		<MainWrapper>
-			<GridComponent
-				dataSource={employees}
+  return (
+    <MainWrapper>
+      <GridComponent
+        dataSource={employees}
         enableHover={false}
         ref={(g) => { gridInstance = g; }}
-				allowSelection={true}
+        allowSelection={true}
         allowPaging={true}
         filterSettings={filter}
-				allowFiltering={true}
+        allowFiltering={true}
         allowSorting={true}
         toolbar={['Search']}
         searchSettings={searchOptions}
