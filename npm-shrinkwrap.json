@@ -2977,6 +2977,56 @@
         "@syncfusion/ej2-react-base": "~18.2.44"
       }
     },
+    "@syncfusion/ej2-react-popups": {
+      "version": "18.3.35",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-popups/-/ej2-react-popups-18.3.35.tgz",
+      "integrity": "sha1-LudOfRl93x1h26sSR68kmbSclk0=",
+      "requires": {
+        "@syncfusion/ej2-base": "~18.3.35",
+        "@syncfusion/ej2-popups": "18.3.35",
+        "@syncfusion/ej2-react-base": "~18.3.35"
+      },
+      "dependencies": {
+        "@syncfusion/ej2-base": {
+          "version": "18.3.35",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-base/-/ej2-base-18.3.35.tgz",
+          "integrity": "sha1-0+iHGZfJG0lFZQ0gF0VykcJxsok=",
+          "requires": {
+            "@syncfusion/ej2-icons": "~18.3.35"
+          }
+        },
+        "@syncfusion/ej2-buttons": {
+          "version": "18.3.35",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-buttons/-/ej2-buttons-18.3.35.tgz",
+          "integrity": "sha1-d1ZSRc2dzT0ymOkSvRzS3R3NKcI=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.3.35"
+          }
+        },
+        "@syncfusion/ej2-icons": {
+          "version": "18.3.35",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-icons/-/ej2-icons-18.3.35.tgz",
+          "integrity": "sha1-FvhfegMd/j0Bj9PnyL9n6EnONLs="
+        },
+        "@syncfusion/ej2-popups": {
+          "version": "18.3.35",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-popups/-/ej2-popups-18.3.35.tgz",
+          "integrity": "sha1-wx0vtwdH7QGBh9Crmw+Ghhz3Y70=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.3.35",
+            "@syncfusion/ej2-buttons": "~18.3.35"
+          }
+        },
+        "@syncfusion/ej2-react-base": {
+          "version": "18.3.37",
+          "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-react-base/-/ej2-react-base-18.3.37.tgz",
+          "integrity": "sha1-TcWP98xWcOhS9gRQX6Lyvp7Jfto=",
+          "requires": {
+            "@syncfusion/ej2-base": "~18.3.35"
+          }
+        }
+      }
+    },
     "@syncfusion/ej2-splitbuttons": {
       "version": "18.2.44",
       "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/@syncfusion/ej2-splitbuttons/-/ej2-splitbuttons-18.2.44.tgz",

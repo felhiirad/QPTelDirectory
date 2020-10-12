@@ -2,29 +2,37 @@ import React, { FC, useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection, Search, Toolbar, SearchSettingsModel } from '@syncfusion/ej2-react-grids';
 
-require('../../../../node_modules/@syncfusion/ej2-base/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-buttons/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-calendars/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-inputs/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-navigations/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-popups/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css');
-require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/material.css');
+require('../../../../node_modules/@syncfusion/ej2-base/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-buttons/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-calendars/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-dropdowns/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-inputs/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-navigations/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-popups/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css');
 
 import { IQpTelephoneDirectoryAppProps } from './IQpTelephoneDirectoryAppProps';
-import { getAllEmployees, getFirstViewEmployees, getSecondViewEmployees } from '../services/QpTelephoneDirectoryServices';
+import { getAllEmployees } from '../services/QpTelephoneDirectoryServices';
 import { Employees } from '../entities/IEmployees';
-import {GlobalLoader} from '../tools/GlobalLoader';
+import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
+import { GlobalLoader } from '../tools/GlobalLoader';
 
 const MainWrapper = styled.div`
 	padding: 1rem;
 `;
 
+const EmployeeName = styled.div`
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
 export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props => {
 
 	const [isLoading, setLoading] = useState<boolean>(true);
+	const [showDetails, setShowDetails] = useState<boolean>(false);
   const [employees, setEmployees] = useState<Employees[]>(undefined);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employees>(null);
   const [querySearch, setQuerySearch] = useState<string>("");
 
   var gridInstance: GridComponent;
@@ -45,6 +53,17 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
         </span>
       </div>
     </div>);
+  };
+
+  const dialogOpen = useCallback((employee) => {
+    setShowDetails(true);
+    setSelectedEmployee(employee);
+  }, []);
+
+  const nameTemplate = (employee): any => {
+    return(
+      <EmployeeName onClick={() => dialogOpen(employee)} >{employee.Full_Name}</EmployeeName>
+    );
   };
 
 	useEffect(() => {
@@ -72,7 +91,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 			>
 				<ColumnsDirective>
           <ColumnDirective headerText="Photo"  allowSorting={false} allowFiltering={false}  template={photoTemplate} />
-					<ColumnDirective field="Full_Name" headerText="Name"  clipMode='EllipsisWithTooltip' />
+					<ColumnDirective headerText="Name"  clipMode='EllipsisWithTooltip' template={nameTemplate} />
 					<ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
 					<ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
 					<ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
@@ -81,6 +100,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 				</ColumnsDirective>
 				<Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
 			</GridComponent>
+      <QpTelephoneDirectoryDetails hideDialog={showDetails} employee={selectedEmployee} />
 		</MainWrapper>
 	);
 };
