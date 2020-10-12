@@ -3,13 +3,21 @@ import { listsName, listViews } from "../constants/lists";
 import { Employees } from "../entities/IEmployees";
 import { ICamlQuery } from "@pnp/sp/lists";
 
-export const getAllEmployees = (siteUrl: string): Promise<Employees[]> => {
+
+//TOBE Merged
+export const getEmployeeSupervisor = (siteUrl: string, Emp_item_Id: number): Promise<Employees> => {
   var web = new Web(siteUrl);
-  return web.lists.getByTitle(listsName.employees).items.top(5000).get().then((items: Employees[]) => {
-    return items;
+  // Caml query object
+  const xml = "<View><Query><Where><Eq><FieldRef Name='Staff_No' /><Value Type='Number'>100</Value></Eq></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
+  const q: ICamlQuery = {
+    ViewXml: xml,
+  };
+
+  return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((items: Employees) => {
+    console.log(items);
+    return items
   });
-
-
+  ;
 };
 
 //TOBE Merged

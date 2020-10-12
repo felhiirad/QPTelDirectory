@@ -13,7 +13,7 @@ require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.c
 require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/material.css');
 
 import { IQpTelephoneDirectoryAppProps } from './IQpTelephoneDirectoryAppProps';
-import { getAllEmployees, getEmployeeSubordinates, getEmployeeLeaves } from '../services/QpTelephoneDirectoryServices';
+import { getEmployeeSubordinates, getEmployeeLeaves, getEmployeeSupervisor, getAllEmployeesInfo } from '../services/QpTelephoneDirectoryServices';
 import { Employees } from '../entities/IEmployees';
 import { GlobalLoader } from '../tools/GlobalLoader';
 
@@ -48,6 +48,11 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
   };
 
   useEffect(() => {
+
+    //TODO: TOBE removed , test of 3 services
+    getEmployeeSupervisor(props.siteUrl, 101).then((items: Employees) => {
+      console.log(items);
+    });
     getEmployeeSubordinates(props.siteUrl, 101).then((items: Employees[]) => {
       console.log(items);
     });
@@ -56,7 +61,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
     });
     var query = new URLSearchParams(window.location.search).get("query");
     if (query != null) setQuerySearch(query);
-    getAllEmployees(props.siteUrl).then((items: Employees[]) => {
+    getAllEmployeesInfo(props.siteUrl).then((items: Employees[]) => {
       setEmployees(items);
       setLoading(false);
     });
