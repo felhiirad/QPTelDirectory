@@ -34,3 +34,15 @@ export interface Employees {
   Work_Location_Description: string;
   Office_Room_No_x002e_: string;
 }
+
+export interface Delegations {
+  Staff_No: number;
+  Leave_Start_Date: Date;
+  Leave_End_Date: Date;
+  Delegate_Staff_No: number;
+  Delegate_Start_Date: Date;
+  Delegate_End_Date: Date;
+  Department: string;
+  Directorate: string;
+  Delegate: Employees;
+}

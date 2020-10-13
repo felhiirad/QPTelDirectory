@@ -100,7 +100,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 				</ColumnsDirective>
 				<Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
 			</GridComponent>
-      <QpTelephoneDirectoryDetails hideDialog={showDetails} employee={selectedEmployee} />
+      {selectedEmployee && <QpTelephoneDirectoryDetails hideDialog={showDetails} employee={selectedEmployee} siteUrl={props.siteUrl} />}
 		</MainWrapper>
 	);
 };
