@@ -11609,6 +11609,11 @@
         "mkdirp": "*"
       }
     },
+    "moment": {
+      "version": "2.29.1",
+      "resolved": "https://pkgs.dev.azure.com/BestCIT/_packaging/BestCITComponents/npm/registry/moment/-/moment-2.29.1.tgz",
+      "integrity": "sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M="
+    },
     "ms": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",

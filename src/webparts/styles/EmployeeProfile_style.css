@@ -50,7 +50,7 @@ color: #00456b;
 }
 
 .employeebox{
-	max-width: 640px;
+	max-width: 500px;
 	background-color: #f8f8f8;
 }
 
@@ -88,6 +88,9 @@ color: #00456b;
 	background-color:#f8f8f8;
 }
 
+hr{
+  margin: 0 20px !important;
+}
 
 /*Contact Me Card */
 .contactmecontainer{
@@ -96,7 +99,7 @@ color: #00456b;
 	max-width: 366px;
 	height: auto;
 	background-color:#f8f8f8;
-	margin-left: auto;
+	margin-left: 10px;
 }
 
 .profiletitle{
@@ -128,11 +131,10 @@ color: #00456b;
 .horizontalborders{
 	display:flex;
 	flex-wrap: row wrap;
-	width: 900px;
+	width: 100%;
 	justify-content: space-between;
 	border-top: 1px solid #49494a;
 	border-bottom: 1px solid #49494a;
-	margin: 0 auto;
 	background: #ebebeb;
 }
 
@@ -147,7 +149,7 @@ color: #00456b;
 /* Supervisor Box*/
 
 .supervisorbox{
-	width: 370px;
+	width: 380px;
 	margin-top: 5px;
 	padding: 5px;
 }
@@ -160,7 +162,7 @@ color: #00456b;
 	display: -webkit-flex;
     display: flex;
 	flex-wrap: wrap;
-	max-width:  350px;
+	max-width:  380px;
 	height: auto;
 	padding: 0px;
 	background-color: #f8f8f8;
@@ -212,7 +214,7 @@ hr.hrline {
 
 /* Table */
 .subordinatesbox{
-	width:  600px;
+	width:  630px;
 	margin-top: 5px;
 	padding: 5px;
 }
@@ -229,6 +231,10 @@ hr.hrline {
 	flex-flow: row wrap;
 	padding: 10px;
 	height: auto;
+}
+
+.subordonatemail{
+  margin-right: 10px;
 }
 
 table.SPTable {

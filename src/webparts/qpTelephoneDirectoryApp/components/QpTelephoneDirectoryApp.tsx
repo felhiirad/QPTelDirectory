@@ -19,7 +19,8 @@ import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
 import { GlobalLoader } from '../tools/GlobalLoader';
 
 const MainWrapper = styled.div`
-	padding: 1rem;
+  padding: 1rem;
+  min-height: 1015px;
 `;
 
 const EmployeeName = styled.div`

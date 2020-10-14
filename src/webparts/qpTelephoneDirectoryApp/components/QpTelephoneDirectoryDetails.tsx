@@ -1,4 +1,5 @@
 import * as React from "react";
+import moment from 'moment';
 import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-react-popups';
 import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
 import { Employees, Delegations } from '../entities/IEmployees';
@@ -51,8 +52,8 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
   }
 
   public componentDidMount() {
+    if (this.props.employee != null) {
 
-    if (this.state.employee != null) {
       getEmployeeSupervisor(this.props.siteUrl, this.state.employee.Supervisor_ID).then(res => {
         this.setState({ supervisor: res != null ? res[0] : null });
       });
@@ -64,12 +65,13 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       getEmployeeLeaves(this.props.siteUrl, this.state.employee.Staff_No).then(res => {
         this.setState({ leaves: res });
       });
+
+      this.setState({ hideDialog: this.props.hideDialog, employee: this.props.employee });
     }
   }
 
   public componentWillReceiveProps(nextProps) {
 
-    this.setState({ hideDialog: nextProps.hideDialog, employee: nextProps.employee });
 
     if (nextProps.employee != null) {
       getEmployeeSupervisor(this.props.siteUrl, nextProps.employee.Supervisor_ID).then(res => {
@@ -83,13 +85,15 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       getEmployeeLeaves(this.props.siteUrl, nextProps.employee.Staff_No).then(res => {
         this.setState({ leaves: res });
       });
+
+      this.setState({ hideDialog: nextProps.hideDialog, employee: nextProps.employee });
     }
   }
 
   private nameTemplate = (employee): any => {
     return (
       <>
-        <a href={`mailto:${employee.Email}`}>
+        <a className="subordonatemail" href={`mailto:${employee.Email}`}>
           <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt="a_varma@qp.com.qa" />
         </a>
         <a href="">{employee.Full_Name}</a>
@@ -114,13 +118,13 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   <div className="employeebox">
                     <div className="employeename">{employee.Full_Name}</div>
                     <div className="employeefontdefault">{employee.Acting_Position}</div>
-                    <div className="actingposition">{employee.Acting_Position_Department}</div>
+                    <div className="actingposition">{employee.Acting_Position_Department},{employee.Reference_Indicator}</div>
                     <div className="employeefontdefault">{employee.Department}</div>
 
 
-                    <div className="employeeaway">The employee is away :</div>
-                    {leaves && leaves.map(leave => (
-                      <div className="employeefontdefault">{leave.Delegate_Start_Date} - {leave.Delegate_End_Date}, acting staff is <a href="">{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
+                    {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
+                    {leaves && leaves.length > 0 && leaves.map(leave => (
+                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a href="">{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
                     ))
                     }
                   </div>
@@ -233,11 +237,11 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   </div>
                 </div>
               </div>}
-              {subordinates && employee.Subordinate_Display == "Y" && <div className="subordinatesbox">
+              {subordinates && subordinates.length > 0 && employee.Subordinate_Display == "Y" && <div className="subordinatesbox">
                 <div className="supervisortitle">Subordinates</div>
                 <div className="subordinatesgreybody">
                   <div className="subordinatestitlecontainer">
-                    <GridComponent
+                  <GridComponent
                       dataSource={subordinates}
                       enableHover={false}
                       ref={(g) => { this.grid = g; }}
