@@ -2,13 +2,15 @@ import * as React from "react";
 import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-react-popups';
 import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
 import { Employees, Delegations } from '../entities/IEmployees';
-import { getEmployeeSupervisor, getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../services/QpTelephoneDirectoryServices';
+import { getEmployeeSupervisor, getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo, getEmployeePhoto } from '../services/QpTelephoneDirectoryServices';
 import '../../styles/EmployeeProfile_style.css';
 
 export interface IQpTelephoneDirectoryDetailsProps {
   hideDialog: boolean;
   employee: Employees;
   siteUrl: string;
+  empPhoto?: string;
+  supervisorPhoto?: string;
 }
 export interface IQpTelephoneDirectoryDetailsState {
   hideDialog: boolean;
@@ -16,6 +18,8 @@ export interface IQpTelephoneDirectoryDetailsState {
   supervisor?: Employees;
   subordinates?: Employees[];
   leaves?: Delegations[];
+  empPhoto?: "";
+  supervisorPhoto?: "";
 }
 
 class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryDetailsProps, IQpTelephoneDirectoryDetailsState> {
@@ -64,6 +68,13 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       getEmployeeLeaves(this.props.siteUrl, this.state.employee.Staff_No).then(res => {
         this.setState({ leaves: res });
       });
+
+      getEmployeePhoto(this.props.siteUrl, this.state.employee.Staff_No).then((Photo) => {
+        this.setState({ empPhoto: Photo });
+      });
+      getEmployeePhoto(this.props.siteUrl, this.state.employee.Staff_No).then((Photo) => {
+        this.setState({ supervisorPhoto: Photo });
+      });
     }
   }
 
@@ -83,6 +94,24 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       getEmployeeLeaves(this.props.siteUrl, nextProps.employee.Staff_No).then(res => {
         this.setState({ leaves: res });
       });
+
+      getEmployeePhoto(this.props.siteUrl, nextProps.employee.Staff_No).then((Photo) => {
+        if (Photo == "") {
+          if (this.state.employee.Gender == 'M') {
+            Photo = "../../assets/avatar-male.png";
+          } else Photo = "../../assets/avatar-female.png";
+        }
+        this.setState({ empPhoto: Photo });
+      });
+      getEmployeePhoto(this.props.siteUrl, nextProps.employee.Supervisor_ID).then((Photo) => {
+        if (Photo == "") {
+          if (this.state.employee.Gender == 'M') {
+            Photo = "../../assets/avatar-male.png";
+          } else Photo = "../../assets/avatar-female.png";
+        }
+        this.setState({ supervisorPhoto: Photo });
+      });
+
     }
   }
 
@@ -108,7 +137,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    <img src={require('../../assets/avatar-male.png')} width="100" height="133" alt="Employee Photo" />
+                    <img src={this.state.empPhoto} width="100" height="133" alt="Employee Photo" />
                   </div>
 
                   <div className="employeebox">
@@ -186,7 +215,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   <div className="supervisortitlecontainer">
 
                     <div className="supervisorphoto">
-                      <img src={require('../../assets/avatar-male.png')} width="100" height="133" alt="Employee Photo" />
+                      <img src={this.state.supervisorPhoto} width="100" height="133" alt="Employee Photo" />
                     </div>
 
 
