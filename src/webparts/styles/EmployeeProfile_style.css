@@ -1,6 +1,24 @@
 @charset "utf-8";
 /* CSS Document */
 
+.e-grid .e-altrow {
+  background-color: #fafafa;
+}
+
+.e-grid .e-headercell {
+  background-color: #969696 !important;
+  color: #FFFFFF;
+}
+
+.e-grid .e-gridheader .e-icons{
+  color: #FFFFFF !important;
+}
+
+.e-pager .e-currentitem {
+  background-color: #969696 !important;
+  color: #FFFFFF !important;
+}
+
 a {
 color: #00456b;
 }

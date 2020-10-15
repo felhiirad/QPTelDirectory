@@ -71,20 +71,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       this.setState({ hideDialog: this.props.hideDialog, employee: this.props.employee });
 
       getEmployeePhoto(this.props.siteUrl, this.props.employee.Staff_No).then((photo) => {
-        if (photo == "") {
-          if (this.props.employee.Gender == 'M') {
-            photo = "../../assets/avatar-male.png";
-          } else photo = "../../assets/avatar-female.png";
-        }
         this.setState({ empPhoto: photo });
       });
 
       getEmployeePhoto(this.props.siteUrl, this.props.employee.Staff_No).then((photo) => {
-        if (photo == "") {
-          if (this.props.employee.Gender == 'M') {
-            photo = "../../assets/avatar-male.png";
-          } else photo = "../../assets/avatar-female.png";
-        }
         this.setState({ supervisorPhoto: photo });
       });
     }
@@ -109,20 +99,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       this.setState({ hideDialog: nextProps.hideDialog, employee: nextProps.employee });
 
       getEmployeePhoto(this.props.siteUrl, nextProps.employee.Staff_No).then((photo) => {
-        if (photo == "") {
-          if (nextProps.employee.Gender == 'M') {
-            photo = "../../assets/avatar-male.png";
-          } else photo = "../../assets/avatar-female.png";
-        }
         this.setState({ empPhoto: photo });
       });
 
       getEmployeePhoto(this.props.siteUrl, nextProps.employee.Supervisor_ID).then((photo) => {
-        if (photo == "") {
-          if (nextProps.employee.Gender == 'M') {
-            photo = "../../assets/avatar-male.png";
-          } else photo = "../../assets/avatar-female.png";
-        }
         this.setState({ supervisorPhoto: photo });
       });
     }
@@ -150,7 +130,13 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    <img src={empPhoto} width="100" height="133" alt="Employee Photo" />
+
+                    {empPhoto != "" ? (<img src={empPhoto} width="100" height="133" alt="Employee Photo" />) : (
+                      <>
+                        {employee.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
+                        {employee.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                      </>
+                    )}
                   </div>
 
                   <div className="employeebox">
@@ -228,7 +214,12 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   <div className="supervisortitlecontainer">
 
                     <div className="supervisorphoto">
-                      <img src={supervisorPhoto} width="100" height="133" alt="Employee Photo" />
+                      {supervisorPhoto != "" ? (<img src={supervisorPhoto} width="100" height="133" alt="Employee Photo" />) : (
+                      <>
+                        {supervisor.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
+                        {supervisor.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                      </>
+                    )}
                     </div>
 
 

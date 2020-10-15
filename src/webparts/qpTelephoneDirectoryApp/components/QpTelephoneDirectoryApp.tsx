@@ -92,7 +92,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
       >
         <ColumnsDirective>
           <ColumnDirective headerText="Photo" allowSorting={false} allowFiltering={false} template={photoTemplate} />
-          <ColumnDirective headerText="Name" clipMode='EllipsisWithTooltip' template={nameTemplate} />
+          <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' template={nameTemplate} />
           <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
           <ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
           <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
