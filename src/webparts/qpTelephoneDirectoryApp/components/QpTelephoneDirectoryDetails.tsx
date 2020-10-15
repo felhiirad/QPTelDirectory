@@ -1,4 +1,5 @@
 import * as React from "react";
+import moment from 'moment';
 import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-react-popups';
 import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
 import { Employees, Delegations } from '../entities/IEmployees';
@@ -9,8 +10,6 @@ export interface IQpTelephoneDirectoryDetailsProps {
   hideDialog: boolean;
   employee: Employees;
   siteUrl: string;
-  empPhoto?: string;
-  supervisorPhoto?: string;
 }
 export interface IQpTelephoneDirectoryDetailsState {
   hideDialog: boolean;
@@ -18,8 +17,8 @@ export interface IQpTelephoneDirectoryDetailsState {
   supervisor?: Employees;
   subordinates?: Employees[];
   leaves?: Delegations[];
-  empPhoto?: "";
-  supervisorPhoto?: "";
+  empPhoto?: string;
+  supervisorPhoto?: string;
 }
 
 class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryDetailsProps, IQpTelephoneDirectoryDetailsState> {
@@ -55,32 +54,34 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
   }
 
   public componentDidMount() {
+    if (this.props.employee != null) {
 
-    if (this.state.employee != null) {
-      getEmployeeSupervisor(this.props.siteUrl, this.state.employee.Supervisor_ID).then(res => {
+      getEmployeeSupervisor(this.props.siteUrl, this.props.employee.Supervisor_ID).then(res => {
         this.setState({ supervisor: res != null ? res[0] : null });
       });
 
-      getEmployeeSubordinates(this.props.siteUrl, this.state.employee.Staff_No).then(res => {
+      getEmployeeSubordinates(this.props.siteUrl, this.props.employee.Staff_No).then(res => {
         this.setState({ subordinates: res });
       });
 
-      getEmployeeLeaves(this.props.siteUrl, this.state.employee.Staff_No).then(res => {
+      getEmployeeLeaves(this.props.siteUrl, this.props.employee.Staff_No).then(res => {
         this.setState({ leaves: res });
       });
 
-      getEmployeePhoto(this.props.siteUrl, this.state.employee.Staff_No).then((Photo) => {
-        this.setState({ empPhoto: Photo });
+      this.setState({ hideDialog: this.props.hideDialog, employee: this.props.employee });
+
+      getEmployeePhoto(this.props.siteUrl, this.props.employee.Staff_No).then((photo) => {
+        this.setState({ empPhoto: photo });
       });
-      getEmployeePhoto(this.props.siteUrl, this.state.employee.Staff_No).then((Photo) => {
-        this.setState({ supervisorPhoto: Photo });
+
+      getEmployeePhoto(this.props.siteUrl, this.props.employee.Staff_No).then((photo) => {
+        this.setState({ supervisorPhoto: photo });
       });
     }
   }
 
   public componentWillReceiveProps(nextProps) {
 
-    this.setState({ hideDialog: nextProps.hideDialog, employee: nextProps.employee });
 
     if (nextProps.employee != null) {
       getEmployeeSupervisor(this.props.siteUrl, nextProps.employee.Supervisor_ID).then(res => {
@@ -95,30 +96,22 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
         this.setState({ leaves: res });
       });
 
-      getEmployeePhoto(this.props.siteUrl, nextProps.employee.Staff_No).then((Photo) => {
-        if (Photo == "") {
-          if (this.state.employee.Gender == 'M') {
-            Photo = "../../assets/avatar-male.png";
-          } else Photo = "../../assets/avatar-female.png";
-        }
-        this.setState({ empPhoto: Photo });
-      });
-      getEmployeePhoto(this.props.siteUrl, nextProps.employee.Supervisor_ID).then((Photo) => {
-        if (Photo == "") {
-          if (this.state.employee.Gender == 'M') {
-            Photo = "../../assets/avatar-male.png";
-          } else Photo = "../../assets/avatar-female.png";
-        }
-        this.setState({ supervisorPhoto: Photo });
+      this.setState({ hideDialog: nextProps.hideDialog, employee: nextProps.employee });
+
+      getEmployeePhoto(this.props.siteUrl, nextProps.employee.Staff_No).then((photo) => {
+        this.setState({ empPhoto: photo });
       });
 
+      getEmployeePhoto(this.props.siteUrl, nextProps.employee.Supervisor_ID).then((photo) => {
+        this.setState({ supervisorPhoto: photo });
+      });
     }
   }
 
   private nameTemplate = (employee): any => {
     return (
       <>
-        <a href={`mailto:${employee.Email}`}>
+        <a className="subordonatemail" href={`mailto:${employee.Email}`}>
           <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt="a_varma@qp.com.qa" />
         </a>
         <a href="">{employee.Full_Name}</a>
@@ -127,7 +120,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
   }
 
   public render() {
-    const { hideDialog, employee, supervisor, subordinates, leaves } = this.state;
+    const { hideDialog, employee, supervisor, subordinates, leaves, empPhoto, supervisorPhoto } = this.state;
     return (
       <div id='dialog-target'>
         {employee && <DialogComponent width='90%' isModal={true} header="Employee Details" showCloseIcon={true} buttons={this.buttons} target='#dialog-target' visible={hideDialog} close={this.dialogClose} overlayClick={this.onOverlayClick}>
@@ -137,19 +130,25 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    <img src={this.state.empPhoto} width="100" height="133" alt="Employee Photo" />
+
+                    {empPhoto != "" ? (<img src={empPhoto} width="100" height="133" alt="Employee Photo" />) : (
+                      <>
+                        {employee.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
+                        {employee.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                      </>
+                    )}
                   </div>
 
                   <div className="employeebox">
                     <div className="employeename">{employee.Full_Name}</div>
                     <div className="employeefontdefault">{employee.Acting_Position}</div>
-                    <div className="actingposition">{employee.Acting_Position_Department}</div>
+                    <div className="actingposition">{employee.Acting_Position_Department},{employee.Reference_Indicator}</div>
                     <div className="employeefontdefault">{employee.Department}</div>
 
 
-                    <div className="employeeaway">The employee is away :</div>
-                    {leaves && leaves.map(leave => (
-                      <div className="employeefontdefault">{leave.Delegate_Start_Date} - {leave.Delegate_End_Date}, acting staff is <a href="">{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
+                    {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
+                    {leaves && leaves.length > 0 && leaves.map(leave => (
+                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a href="">{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
                     ))
                     }
                   </div>
@@ -215,7 +214,12 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   <div className="supervisortitlecontainer">
 
                     <div className="supervisorphoto">
-                      <img src={this.state.supervisorPhoto} width="100" height="133" alt="Employee Photo" />
+                      {supervisorPhoto != "" ? (<img src={supervisorPhoto} width="100" height="133" alt="Employee Photo" />) : (
+                      <>
+                        {supervisor.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
+                        {supervisor.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                      </>
+                    )}
                     </div>
 
 
@@ -262,11 +266,11 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   </div>
                 </div>
               </div>}
-              {subordinates && employee.Subordinate_Display == "Y" && <div className="subordinatesbox">
+              {subordinates && subordinates.length > 0 && employee.Subordinate_Display == "Y" && <div className="subordinatesbox">
                 <div className="supervisortitle">Subordinates</div>
                 <div className="subordinatesgreybody">
                   <div className="subordinatestitlecontainer">
-                    <GridComponent
+                  <GridComponent
                       dataSource={subordinates}
                       enableHover={false}
                       ref={(g) => { this.grid = g; }}
