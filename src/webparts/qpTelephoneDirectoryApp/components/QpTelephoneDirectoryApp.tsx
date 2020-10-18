@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
-import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection, Search, Toolbar, SearchSettingsModel } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, SortSettingsModel, ColumnDirective, Inject, Page, Sort, Filter, Selection, Search, Toolbar, SearchSettingsModel } from '@syncfusion/ej2-react-grids';
 
 require('../../../../node_modules/@syncfusion/ej2-base/styles/fabric.css');
 require('../../../../node_modules/@syncfusion/ej2-buttons/styles/fabric.css');
@@ -13,10 +13,10 @@ require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/fabric.css
 require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css');
 
 import { IQpTelephoneDirectoryAppProps } from './IQpTelephoneDirectoryAppProps';
-import { getAllEmployees, getEmployeePhoto } from '../services/QpTelephoneDirectoryServices';
-import { Employees } from '../entities/IEmployees';
+import { getAllEmployees } from '../../services/QpTelephoneDirectoryServices';
+import { Employees } from '../../entities/IEmployees';
 import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
-import { GlobalLoader } from '../tools/GlobalLoader';
+import { GlobalLoader } from '../../tools/GlobalLoader';
 
 const MainWrapper = styled.div`
   padding: 1rem;
@@ -39,6 +39,10 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
   var gridInstance: GridComponent;
   const filter: any = {
     type: 'Menu'
+  };
+
+  const sortingOptions: SortSettingsModel = {
+    columns: [{ field: 'Staff_No', direction: 'Ascending' }]
   };
 
   var searchOptions: SearchSettingsModel = {
@@ -87,6 +91,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
         filterSettings={filter}
         allowFiltering={true}
         allowSorting={true}
+        sortSettings={sortingOptions}
         toolbar={['Search']}
         searchSettings={searchOptions}
       >
