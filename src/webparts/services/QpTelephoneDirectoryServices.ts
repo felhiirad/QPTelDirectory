@@ -27,7 +27,7 @@ export const getEmployeeInfo = (siteUrl: string, staffNo: number): Promise<Emplo
   };
 
   return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((item: Employees) => {
-    return item;
+    return item != null ? item[0] : null;
   });
 };
 
@@ -40,7 +40,7 @@ export const getEmployeeSupervisor = (siteUrl: string, staffNo: number): Promise
   };
 
   return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((item: Employees) => {
-    return item;
+    return item != null ? item[0] : null;
   });
 };
 
@@ -78,7 +78,7 @@ export const getEmployeeLeaves = (siteUrl: string, staffNo: number): Promise<Del
   return web.lists.getByTitle(listsName.delegations).getItemsByCAMLQuery(q).then(async (delegations: Delegations[]) => {
     for (var detegation of delegations) {
       await getEmployeeInfo(siteUrl, detegation.Delegate_Staff_No).then(emp => {
-        detegation.Delegate = emp != null ? emp[0] : null;
+        detegation.Delegate = emp;
       });
     }
     return delegations;

@@ -1,28 +1,31 @@
 import * as React from "react";
 import moment from 'moment';
-import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-react-popups';
 import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
+
+require('../../../../node_modules/@syncfusion/ej2-base/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-buttons/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-calendars/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-dropdowns/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-inputs/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-navigations/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-popups/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/fabric.css');
+require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css');
+
 import { Employees, Delegations } from '../../entities/IEmployees';
-import { getEmployeeSupervisor, getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo, getEmployeePhoto } from '../../services/QpTelephoneDirectoryServices';
+import { IQpTelephoneDirectoryDetailsProps } from './IQpTelephoneDirectoryDetailsProps';
+import { getEmployeeSupervisor, getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../../services/QpTelephoneDirectoryServices';
 import '../../styles/EmployeeProfile_style.css';
 
-export interface IQpTelephoneDirectoryDetailsProps {
-  hideDialog: boolean;
-  employee: Employees;
-  siteUrl: string;
-}
 export interface IQpTelephoneDirectoryDetailsState {
-  hideDialog: boolean;
+  staffNo?: number;
   employee: Employees;
   supervisor?: Employees;
   subordinates?: Employees[];
   leaves?: Delegations[];
-  empPhoto?: string;
-  supervisorPhoto?: string;
 }
 
 class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryDetailsProps, IQpTelephoneDirectoryDetailsState> {
-  private buttons: ButtonPropsModel[];
   private grid: GridComponent;
   private filter: any = {
     type: 'Menu'
@@ -31,61 +34,29 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
   constructor(props) {
     super(props);
     this.state = {
-      hideDialog: this.props.hideDialog,
-      employee: this.props.employee
+      employee: undefined
     };
-
-    this.buttons = [{
-      click: () => {
-        this.setState({ hideDialog: false });
-      },
-      buttonModel: {
-        isPrimary: true,
-        content: 'Close'
-      }
-    }];
-  }
-  private onOverlayClick = () => {
-    this.setState({ hideDialog: false });
-  }
-
-  private dialogClose = () => {
-    this.setState({ hideDialog: false });
   }
 
   public componentDidMount() {
-    if (this.props.employee != null) {
-      getEmployeeSupervisor(this.props.siteUrl, this.props.employee.Supervisor_ID).then(res => {
-        this.setState({ supervisor: res });
+    var staffNo = Number(new URLSearchParams(window.location.search).get("staffNo"));
+    if (staffNo != null) {
+      this.setState({ staffNo: staffNo });
+      getEmployeeInfo(this.props.siteUrl, staffNo).then(employee => {
+        this.setState({ employee: employee });
+
+        getEmployeeSupervisor(this.props.siteUrl, employee.Supervisor_ID).then(res => {
+          this.setState({ supervisor: res });
+        });
       });
 
-      getEmployeeSubordinates(this.props.siteUrl, this.props.employee.Staff_No).then(res => {
+      getEmployeeSubordinates(this.props.siteUrl, staffNo).then(res => {
         this.setState({ subordinates: res });
       });
 
-      getEmployeeLeaves(this.props.siteUrl, this.props.employee.Staff_No).then(res => {
+      getEmployeeLeaves(this.props.siteUrl, staffNo).then(res => {
         this.setState({ leaves: res });
       });
-
-      this.setState({ hideDialog: this.props.hideDialog, employee: this.props.employee });
-    }
-  }
-
-  public componentWillReceiveProps(nextProps) {
-    if (nextProps.employee != null) {
-      getEmployeeSupervisor(this.props.siteUrl, nextProps.employee.Supervisor_ID).then(res => {
-        this.setState({ supervisor: res });
-      });
-
-      getEmployeeSubordinates(this.props.siteUrl, nextProps.employee.Staff_No).then(res => {
-        this.setState({ subordinates: res });
-      });
-
-      getEmployeeLeaves(this.props.siteUrl, nextProps.employee.Staff_No).then(res => {
-        this.setState({ leaves: res });
-      });
-
-      this.setState({ hideDialog: nextProps.hideDialog, employee: nextProps.employee });
     }
   }
 
@@ -103,12 +74,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
   }
 
   public render() {
-    const { hideDialog, employee, supervisor, subordinates, leaves, empPhoto, supervisorPhoto } = this.state;
+    const { employee, supervisor, subordinates, leaves } = this.state;
     return (
-      <div id='dialog-target'>
-        {employee && <DialogComponent width='90%' isModal={true} header="Employee Details" showCloseIcon={true} buttons={this.buttons} target='#dialog-target' visible={hideDialog} close={this.dialogClose} overlayClick={this.onOverlayClick}>
-          <div className="dialogContent">
-            <div className="fullcontainer">
+      <div>
+        {employee && <div className="fullcontainer">
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
@@ -125,7 +94,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
                       <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a target="_blank" href={`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${leave.Delegate.Staff_No}`} >{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
-                      ))
+                    ))
                     }
                   </div>
                 </div>
@@ -186,6 +155,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               {supervisor && <div className="supervisorbox">
                 <div className="supervisortitle">Supervisor</div>
                 <div className="supervisorgreybody">
+
                   <div className="supervisortitlecontainer">
                     <div className="supervisorphoto">
                       {supervisor.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
@@ -193,7 +163,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     </div>
 
                     <div className="supervisordetailsbox">
-                    <div className="supervisorname"><a target="_blank" href={`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${supervisor.Staff_No}`} >{supervisor.Full_Name}</a></div>
+                      <div className="supervisorname"><a target="_blank" href={`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${supervisor.Staff_No}`} >{supervisor.Full_Name}</a></div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position}</div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position_Department}</div>
                       <div className="supervisorfontdefault">{supervisor.Department}</div>
@@ -204,6 +174,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     </div>
 
                     <div className="contactmecontainer">
+
                       {supervisor.Email && <div className="actionline">
                         <div className="small_icons"><img src={require('../../assets/icon_mail_normal.png')} width="30" height="30"
                           alt="email" /></div>
@@ -260,8 +231,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               </div>}
               <div id="footer"></div>
             </div>
-          </div>
-        </DialogComponent>}
+         }
       </div>);
   }
 }
