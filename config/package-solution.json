@@ -3,24 +3,10 @@
   "solution": {
     "name": "best-cit-qp-telephone-directory-application-client-side-solution",
     "id": "e4e1c792-d998-4424-827c-ef973cf862eb",
-    "version": "1.0.0.1",
+    "version": "1.0.0.2",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
-    "skipFeatureDeployment": false,
-    "features": [
-      {
-        "title": "Application Extension - Deployment of custom action.",
-        "description": "Deploys a custom action with ClientSideComponentId association",
-        "id": "a5721203-84b3-47de-9d00-05ef0cb0bbee",
-        "version": "1.0.0.1",
-        "assets": {
-          "elementManifests": [
-            "elements.xml",
-            "clientsideinstance.xml"
-          ]
-        }
-      }
-    ]
+    "skipFeatureDeployment": false
   },
   "paths": {
     "zippedPackage": "solution/best-cit-qp-telephone-directory-application.sppkg"

@@ -9,7 +9,7 @@ export interface Employees {
   Email: string;
   Mobile_No: number;
   Office_Phone_No_1: number;
-  Department: number;
+  Department: string;
   Reference_Indicator: string;
   //  SUPERVISOR: Employees;
   //  SUBORDINATES: Employees[];

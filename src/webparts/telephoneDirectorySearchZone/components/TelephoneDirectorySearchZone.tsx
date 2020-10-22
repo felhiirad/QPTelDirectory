@@ -13,14 +13,15 @@ const SearchZone = styled.div`
 
 const SearchText = styled.input`
   position: absolute;
-  left: 5px;
-  top: 5px;
+  left: 29px;
+  top: 36px;
   bottom: 5px;
   background: #f1f1f1;
   color: #000;
   border: none;
   padding: 5px;
   width: 80%;
+  height: 24px;
 
   ::placeholder {
     font-style: italic;
@@ -29,8 +30,8 @@ const SearchText = styled.input`
 
 const SearchButton = styled.button`
   position: absolute;
-  left: 82%;
-  top: 5px;
+  left: 75.5%;
+  top: 36px;
   bottom: 5px;
   background: #37B08C;
   font-style: normal;
@@ -40,7 +41,8 @@ const SearchButton = styled.button`
   color: #FFFEFE;
   text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
   border: none;
-  width: 17.5%
+  width: 17.5%;
+  height: 34px;
 `;
 
 export interface ITelephoneDirectorySearchZoneState{
@@ -73,8 +75,10 @@ export default class TelephoneDirectorySearchZone extends React.Component<ITelep
   public render(): React.ReactElement<ITelephoneDirectorySearchZoneProps> {
     return (
       <SearchZone>
-        <SearchText type="text" placeholder="People Search..." onChange={ val => this.setState({searchText: val.target.value}) } />
-        <SearchButton onClick={this.searchAction} >Search</SearchButton>
+        <form>
+          <SearchText type="text" placeholder="People Search..." onChange={ val => this.setState({searchText: val.target.value}) } />
+          <SearchButton onClick={this.searchAction} >Search</SearchButton>
+        </form>
       </SearchZone>
     );
   }
