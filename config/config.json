@@ -18,19 +18,19 @@
         }
       ]
     },
-    "global-search-extension-application-customizer": {
-      "components": [
-        {
-          "entrypoint": "./lib/extensions/globalSearchExtension/GlobalSearchExtensionApplicationCustomizer.js",
-          "manifest": "./src/extensions/globalSearchExtension/GlobalSearchExtensionApplicationCustomizer.manifest.json"
-        }
-      ]
-    },
     "qp-telephone-directory-details-web-part": {
       "components": [
         {
           "entrypoint": "./lib/webparts/qpTelephoneDirectoryDetails/QpTelephoneDirectoryDetailsWebPart.js",
           "manifest": "./src/webparts/qpTelephoneDirectoryDetails/QpTelephoneDirectoryDetailsWebPart.manifest.json"
+        }
+      ]
+    },
+    "qp-telephone-directory-whos-who-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/qpTelephoneDirectoryWhosWho/QpTelephoneDirectoryWhosWhoWebPart.js",
+          "manifest": "./src/webparts/qpTelephoneDirectoryWhosWho/QpTelephoneDirectoryWhosWhoWebPart.manifest.json"
         }
       ]
     }
@@ -39,7 +39,7 @@
   "localizedResources": {
     "QpTelephoneDirectoryAppWebPartStrings": "lib/webparts/qpTelephoneDirectoryApp/loc/{locale}.js",
     "TelephoneDirectorySearchZoneWebPartStrings": "lib/webparts/telephoneDirectorySearchZone/loc/{locale}.js",
-    "GlobalSearchExtensionApplicationCustomizerStrings": "lib/extensions/globalSearchExtension/loc/{locale}.js",
-    "QpTelephoneDirectoryDetailsWebPartStrings": "lib/webparts/qpTelephoneDirectoryDetails/loc/{locale}.js"
+    "QpTelephoneDirectoryDetailsWebPartStrings": "lib/webparts/qpTelephoneDirectoryDetails/loc/{locale}.js",
+    "QpTelephoneDirectoryWhosWhoWebPartStrings": "lib/webparts/qpTelephoneDirectoryWhosWho/loc/{locale}.js"
   }
 }

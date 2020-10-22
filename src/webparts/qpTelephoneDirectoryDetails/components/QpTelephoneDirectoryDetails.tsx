@@ -60,13 +60,20 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
     }
   }
 
+  public open = (url) => {
+    const win = window.open(url, '_blank');
+    if (win != null) {
+      win.focus();
+    }
+  }
+
   private nameTemplate = (employee): any => {
     return (
       <>
         <a className="subordonatemail" href={`mailto:${employee.Email}`}>
           <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt="a_varma@qp.com.qa" />
         </a>
-        <a target="_blank" href={`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${employee.Staff_No}`}>
+        <a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${employee.Staff_No}`)}>
           {employee.Full_Name}
         </a>
       </>
@@ -81,7 +88,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    {employee.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
+                    {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} />}
                     {employee.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
                   </div>
 
@@ -93,8 +100,8 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
-                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a target="_blank" href={`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${leave.Delegate.Staff_No}`} >{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
-                    ))
+                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${leave.Delegate.Staff_No}`)}>{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
+                      ))
                     }
                   </div>
                 </div>
@@ -158,12 +165,12 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
 
                   <div className="supervisortitlecontainer">
                     <div className="supervisorphoto">
-                      {supervisor.Gender == 'M' && <img width="100" src={require('../../assets/avatar-male.png')} />}
+                      {supervisor.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + supervisor.Staff_No + ".jpg"} />}
                       {supervisor.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
                     </div>
 
                     <div className="supervisordetailsbox">
-                      <div className="supervisorname"><a target="_blank" href={`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${supervisor.Staff_No}`} >{supervisor.Full_Name}</a></div>
+                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position}</div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position_Department}</div>
                       <div className="supervisorfontdefault">{supervisor.Department}</div>

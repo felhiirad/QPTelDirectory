@@ -1,9 +1,11 @@
 export const listsName = {
   employees: "EMPLOYEES",
-  delegations: "DELEGATIONS"
+  delegations: "DELEGATIONS",
+  employeePhotos: "Employee Photos"
 };
 
-export const listViews = {
-  firstItems: "First 5000 Items",
-  secondItems: "Second 5000 Items"
+export const listPage = {
+  employeeSearch: "Employee-Search.aspx",
+  detailsEmployee: "Employee-Details.aspx",
+  whosWhoPage: "Who's-who.aspx"
 };

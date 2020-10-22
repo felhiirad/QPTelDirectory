@@ -84,11 +84,3 @@ export const getEmployeeLeaves = (siteUrl: string, staffNo: number): Promise<Del
     return delegations;
   });
 };
-
-export const getEmployeePhoto = async (siteUrl: string, empItemId: number): Promise<any> => {
-  var web = new Web(siteUrl);
-  return web.lists.getByTitle(listsName.employees).items.getById(empItemId).attachmentFiles.get().then((attachs) => {
-    return attachs.length != 0 ? siteUrl.split("/sites")[0] + attachs[0].ServerRelativeUrl : "";
-  });
-};
-
