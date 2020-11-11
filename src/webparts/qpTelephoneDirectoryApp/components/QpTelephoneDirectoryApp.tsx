@@ -76,14 +76,15 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 
   useEffect(() => {
     var query = new URLSearchParams(window.location.search).get("query");
-    if (query != null) {
+    if (query != null && !isLoading) {
       gridInstance.searchSettings.key = query;
     }
-    getAllEmployees(props.siteUrl).then((items: Employees[]) => {
-      setEmployees(items);
-      setLoading(false);
-    });
-  }, []);
+    if(isLoading)
+      getAllEmployees(props.siteUrl).then((items: Employees[]) => {
+        setEmployees(items);
+        setLoading(false);
+      });
+  }, [isLoading]);
 
   return (
     <MainWrapper>
