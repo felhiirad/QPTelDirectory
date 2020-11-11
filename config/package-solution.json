@@ -1,14 +1,14 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "best-cit-qp-telephone-directory-application-client-side-solution",
+    "name": "qp-telephone-directory-application-client-side-solution",
     "id": "e4e1c792-d998-4424-827c-ef973cf862eb",
-    "version": "1.0.0.2",
+    "version": "1.0.0.1",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "skipFeatureDeployment": false
   },
   "paths": {
-    "zippedPackage": "solution/best-cit-qp-telephone-directory-application.sppkg"
+    "zippedPackage": "solution/qp-telephone-directory-application.sppkg"
   }
 }

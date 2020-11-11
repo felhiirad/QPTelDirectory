@@ -14,8 +14,9 @@ require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css'
 
 import { Employees, Delegations } from '../../entities/IEmployees';
 import { IQpTelephoneDirectoryDetailsProps } from './IQpTelephoneDirectoryDetailsProps';
-import { getEmployeeSupervisor, getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../../services/QpTelephoneDirectoryServices';
+import { getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../../services/QpTelephoneDirectoryServices';
 import '../../styles/EmployeeProfile_style.css';
+import { listPage } from "../../constants/lists";
 
 export interface IQpTelephoneDirectoryDetailsState {
   staffNo?: number;
@@ -45,7 +46,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       getEmployeeInfo(this.props.siteUrl, staffNo).then(employee => {
         this.setState({ employee: employee });
 
-        getEmployeeSupervisor(this.props.siteUrl, employee.Supervisor_ID).then(res => {
+        getEmployeeInfo(this.props.siteUrl, employee.Supervisor_ID).then(res => {
           this.setState({ supervisor: res });
         });
       });
@@ -73,7 +74,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
         <a className="subordonatemail" href={`mailto:${employee.Email}`}>
           <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt="a_varma@qp.com.qa" />
         </a>
-        <a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${employee.Staff_No}`)}>
+        <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${employee.Staff_No}`)}>
           {employee.Full_Name}
         </a>
       </>
@@ -100,7 +101,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
-                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${leave.Delegate.Staff_No}`)}>{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
+                      <div className="employeefontdefault">{moment(leave.DelegationStartDate).format('DD/MM/YYYY')} - {moment(leave.DelegationEndDate).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${leave.Delegate.Staff_No}`)}>{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
                       ))
                     }
                   </div>
@@ -170,7 +171,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     </div>
 
                     <div className="supervisordetailsbox">
-                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
+                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position}</div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position_Department}</div>
                       <div className="supervisorfontdefault">{supervisor.Department}</div>

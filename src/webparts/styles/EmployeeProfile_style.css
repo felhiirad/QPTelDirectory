@@ -20,7 +20,8 @@
 }
 
 a {
-color: #00456b;
+  color: #00456b;
+  cursor: pointer;
 }
 .fullcontainer {
 	display: -webkit-flex;

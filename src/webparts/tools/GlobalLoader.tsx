@@ -36,35 +36,35 @@ const Bar = styled.div`
 
 const Wrapper = styled.div`
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 0;
     right: 0;
     bottom: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
     background: ${colorStack.white};
     z-index: 2147484000; /* because intercom's z-index is 2147483000... */
     transition: all 300ms;
-    opacity: 0;
-    visibility: hidden;
-
-    ${(props: IGlobalLoaderProps) => props.isLoading && css`
-        opacity: 1;
-        visibility: visible;
-    `}
+    opacity: 1;
+    visibility: visible;
 
     img {
         width: 90px;
     }
 `;
 
-export const GlobalLoader: React.SFC<IGlobalLoaderProps> = ({ isLoading }) => (
-    <Wrapper isLoading={isLoading}>
-        <img src={require('../../assets/Qatar-Petroleum-Vector-Logo.png')} />
+export class GlobalLoader extends React.Component<IGlobalLoaderProps, {}> {
+
+  public render() {
+    const { isLoading, children } = this.props;
+    return (
+      isLoading ? <Wrapper>
+        <img src={require('../assets/Qatar-Petroleum-Vector-Logo.png')} />
         <Loader>
-            <Bar />
+          <Bar />
         </Loader>
-    </Wrapper>
-);
+      </Wrapper> : children);
+  }
+}

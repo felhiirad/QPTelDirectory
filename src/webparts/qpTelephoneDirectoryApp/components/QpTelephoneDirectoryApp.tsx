@@ -34,11 +34,14 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [employees, setEmployees] = useState<Employees[]>(undefined);
   const [selectedEmployee, setSelectedEmployee] = useState<Employees>(null);
-  const [querySearch, setQuerySearch] = useState<string>("");
 
   var gridInstance: GridComponent;
   const filter: any = {
     type: 'Menu'
+  };
+
+  const fieldFilter: any = {
+    type: 'CheckBox'
   };
 
   const sortingOptions: SortSettingsModel = {
@@ -75,7 +78,6 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
     var query = new URLSearchParams(window.location.search).get("query");
     if (query != null) {
       gridInstance.searchSettings.key = query;
-      setQuerySearch(query);
     }
     getAllEmployees(props.siteUrl).then((items: Employees[]) => {
       setEmployees(items);
@@ -85,30 +87,34 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
 
   return (
     <MainWrapper>
-      <GridComponent
-        dataSource={employees}
-        enableHover={false}
-        ref={(g) => { gridInstance = g; }}
-        allowSelection={true}
-        allowPaging={true}
-        filterSettings={filter}
-        allowFiltering={true}
-        allowSorting={true}
-        sortSettings={sortingOptions}
-        toolbar={['Search']}
-      >
-        <ColumnsDirective>
-          <ColumnDirective headerText="Photo" allowSorting={false} allowFiltering={false} template={photoTemplate} />
-          <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' template={nameTemplate} />
-          <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
-          <ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
-          <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
-          <ColumnDirective field="Mobile_No" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
-          <ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
-        </ColumnsDirective>
-        <Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
-      </GridComponent>
-      {selectedEmployee && <QpTelephoneDirectoryDetails hideDialog={showDetails} employee={selectedEmployee} siteUrl={props.siteUrl} clearData={clearData} />}
+      <GlobalLoader isLoading={isLoading}>
+        <GridComponent
+          dataSource={employees}
+          enableHover={false}
+          ref={(g) => { gridInstance = g; }}
+          allowSelection={true}
+          allowPaging={true}
+          filterSettings={filter}
+          allowFiltering={true}
+          allowSorting={true}
+          sortSettings={sortingOptions}
+          toolbar={['Search']}
+        >
+          <ColumnsDirective>
+            <ColumnDirective headerText="Photo" allowSorting={false} allowFiltering={false} template={photoTemplate} />
+            <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' template={nameTemplate} />
+            <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
+            <ColumnDirective field="Department" filter={fieldFilter} headerText="Department" clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Division" filter={fieldFilter} headerText="Division" clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Reference_Indicator" filter={fieldFilter} headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Mobile_No" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
+          </ColumnsDirective>
+          <Inject services={[Page, Filter, Sort, Selection, Search, Toolbar]} />
+        </GridComponent>
+        {selectedEmployee && <QpTelephoneDirectoryDetails hideDialog={showDetails} employee={selectedEmployee} siteUrl={props.siteUrl} clearData={clearData} />}
+      </GlobalLoader>
     </MainWrapper>
   );
 };
