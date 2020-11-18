@@ -36,13 +36,13 @@ export interface Employees {
 }
 
 export interface Delegations {
-  Staff_No: number;
-  Leave_Start_Date: Date;
-  Leave_End_Date: Date;
-  Delegate_Staff_No: number;
-  Delegate_Start_Date: Date;
-  Delegate_End_Date: Date;
-  Department: string;
+  StaffNo_x002e_: number;
+  LeaveStartDate: Date;
+  LeaveEndDate: Date;
+  DelegateStaffNo_x002e_: number;
+  DelegationStartDate: Date;
+  DelegationEndDate: Date;
+  Title: string;
   Directorate: string;
   Delegate: Employees;
 }
