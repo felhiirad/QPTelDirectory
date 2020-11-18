@@ -3,49 +3,47 @@ import styled from 'styled-components';
 import { listPage } from '../../constants/lists';
 import { ITelephoneDirectorySearchZoneProps } from './ITelephoneDirectorySearchZoneProps';
 import { getEmployeeByQuery } from '../../services/QpTelephoneDirectoryServices';
-import { Employees } from '../../entities/IEmployees';
 
 
 const SearchZone = styled.div`
-  height: 35px;
-  min-height: 35px;
-  padding: 1rem;
-  border: 5px solid #00456B;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+  border: 3px solid #37B08C;
+  background: rgb(241, 241, 241);
+  overflow: auto;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 `;
 
 const SearchText = styled.input`
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  bottom: 5px;
-  background: #f1f1f1;
-  color: #000;
-  border: none;
-  padding: 5px;
-  width: 80%;
+  border: 0px;
+  width: 75%;
+  padding: 10px;
+  background: none;
 
   ::placeholder {
     font-style: italic;
   }
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 const SearchButton = styled.button`
-  position: absolute;
-  left: 82%;
-  top: 5px;
-  bottom: 5px;
-  background: #37B08C;
-  font-style: normal;
+  border: 0px;
+	background: none;
+	background-color: #37B08C;
+	color: #fff;
+	float: right;
+  padding: 10px;
   font-weight: bold;
-  font-size: 12px;
-  line-height: 0px;
-  color: #FFFEFE;
-  text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
-  border: none;
-  width: 17%;
+	border-radius-top-right: 5px;
+	-moz-border-radius-top-right: 5px;
+	-webkit-border-radius-top-right: 5px;
+	border-radius-bottom-right: 5px;
+	-moz-border-radius-bottom-right: 5px;
+	-webkit-border-radius-bottom-right: 5px;
+  cursor:pointer;
 `;
 
 export interface ITelephoneDirectorySearchZoneState{

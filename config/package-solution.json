@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "qp-telephone-directory-application-client-side-solution",
-    "id": "e4e1c792-d998-4424-827c-ef973cf862eb",
-    "version": "1.0.0.1",
+    "id": "e4e1c792-d998-4424-827c-ef973cf862ed",
+    "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "skipFeatureDeployment": false

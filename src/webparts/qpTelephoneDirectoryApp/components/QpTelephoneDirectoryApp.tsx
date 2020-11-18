@@ -17,6 +17,7 @@ import { getAllEmployees } from '../../services/QpTelephoneDirectoryServices';
 import { Employees } from '../../entities/IEmployees';
 import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
 import { GlobalLoader } from '../../tools/GlobalLoader';
+import EmployeeCard from './QpTelephoneDirectoryCard';
 
 const MainWrapper = styled.div`
   padding: 1rem;
@@ -48,15 +49,19 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
     columns: [{ field: 'Staff_No', direction: 'Ascending' }]
   };
 
+  const onError = (event) => {
+    event.target.src = require('../../assets/avatar-male.png');
+  };
+
   const photoTemplate = (employee): any => {
-    return (<div>
+    return (<EmployeeCard employee={employee} siteUrl={props.siteUrl} >
       <div className="empimg">
         <span className="e-userimg">
-          {employee.Gender == 'M' && <img width="50" src={"/sites" + props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} />}
+          {employee.Gender == 'M' && <img width="50" src={"/sites" + props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} onError={onError} />}
           {employee.Gender == 'F' && <img width="50" src={require('../../assets/avatar-female.png')} />}
         </span>
       </div>
-    </div>);
+    </EmployeeCard>);
   };
 
   const clearData = (): void => {
