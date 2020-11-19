@@ -3,7 +3,7 @@
   "solution": {
     "name": "qp-telephone-directory-application-client-side-solution",
     "id": "e4e1c792-d998-4424-827c-ef973cf862ed",
-    "version": "1.0.0.0",
+    "version": "1.0.0.1",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "skipFeatureDeployment": false

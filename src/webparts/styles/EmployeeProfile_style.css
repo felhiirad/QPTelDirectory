@@ -69,7 +69,7 @@ a {
 }
 
 .employeebox{
-	max-width: 500px;
+	width: 470px;
 	background-color: #f8f8f8;
 }
 
@@ -77,7 +77,6 @@ a {
 .employeename{
 	color: #323130;
 	font-size: 1.5rem;
-	width: 500px;
 }
 
 .employeefontdefault{
@@ -138,7 +137,6 @@ hr{
 .actionline{
 	display:flex;
 	flex-basis: 100%;
-	flex-flow: row wrap;
 }
 .small_icons{
 	margin: 5px;

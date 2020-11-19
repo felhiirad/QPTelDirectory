@@ -6,7 +6,7 @@ import { getEmployeeByQuery } from '../../services/QpTelephoneDirectoryServices'
 
 
 const SearchZone = styled.div`
-  border: 3px solid #37B08C;
+  border: 3px solid #00456b;
   background: rgb(241, 241, 241);
   overflow: auto;
   border-radius: 5px;
