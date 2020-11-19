@@ -1,5 +1,7 @@
 export interface IQpTelephoneDirectoryWhosWhoProps {
   description: string;
-  context : any;
+  context: any;
   siteUrl: string;
+  selectedDepartment: string;
+
 }

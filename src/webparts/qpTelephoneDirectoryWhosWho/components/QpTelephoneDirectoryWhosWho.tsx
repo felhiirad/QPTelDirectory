@@ -14,7 +14,7 @@ require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/fabric.css
 require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css');
 
 import { IQpTelephoneDirectoryWhosWhoProps } from './IQpTelephoneDirectoryWhosWhoProps';
-import { getAllEmployees } from '../../services/QpTelephoneDirectoryServices';
+import { getAllEmployees, getlistConfiguration } from '../../services/QpTelephoneDirectoryServices';
 import { Employees } from '../../entities/IEmployees';
 import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
 import { GlobalLoader } from '../../tools/GlobalLoader';
@@ -78,12 +78,18 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
 
   useEffect(() => {
     var deprts = [];
-    deprts.push({department: 'All', key: '1'}); var key = 2;
-
+    deprts.push({ department: 'All', key: '1' }); var key = 2;
+    //anis
+    const listEmp = getlistConfiguration(props.siteUrl, "Employees").then((items) => {
+      console.log(items)
+    })
+    //anis
+    //  setSelectedDepartment(props.selectedDepartment);
     var query = new URLSearchParams(window.location.search).get("department");
     if (query != null && query != "") {
       gridInstance.filterSettings.columns = [
-        { field: 'Department', matchCase: false,
+        {
+          field: 'Department', matchCase: false,
           operator: 'equal', predicate: 'and', value: query
         }
       ];
@@ -94,8 +100,8 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
       setLoading(false);
       for (var emp of items) {
         if (deprts.find(e => e.department == emp.Department) == undefined) {
-          deprts.push({department: emp.Department, key: `${key}`});
-          if(query == emp.Department)
+          deprts.push({ department: emp.Department, key: `${key}` });
+          if (query == emp.Department)
             setSelectedDepartment(`${key}`);
           key++;
         }
@@ -106,14 +112,14 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
 
   const onChange = (sel) => {
     if (sel.itemData.department === 'All') {
-        gridInstance.clearFiltering();
-        setSelectedEmployee(null);
-        setSelectedDepartment(null);
+      gridInstance.clearFiltering();
+      setSelectedEmployee(null);
+      setSelectedDepartment(null);
     }
     else {
-        gridInstance.filterByColumn('Department', 'equal', sel.itemData.department);
-        setSelectedEmployee(null);
-        setSelectedDepartment(sel.itemData.key);
+      gridInstance.filterByColumn('Department', 'equal', sel.itemData.department);
+      setSelectedEmployee(null);
+      setSelectedDepartment(sel.itemData.key);
     }
   };
 

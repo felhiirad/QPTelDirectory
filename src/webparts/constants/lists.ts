@@ -1,7 +1,9 @@
 export const listsName = {
   employees: "EMPLOYEES",
   delegations: "DELEGATIONS",
-  employeePhotos: "Employee Photos"
+  employeePhotos: "Employee Photos",
+  listConfig: "Lists Configuration",
+  pageConfig: "Pages Configuration"
 };
 
 export const listPage = {

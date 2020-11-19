@@ -44,6 +44,44 @@ export const getEmployeeSupervisor = (siteUrl: string, staffNo: number): Promise
   });
 };
 
+/**
+* // TODO: Merge
+* getlistConfiguration
+* @param siteUrl,listName
+* @returns List name from item title
+*/
+export const getlistConfiguration = (siteUrl: string, listName: string): Promise<any> => {
+  var web = new Web(siteUrl);
+  //Caml query object
+  const xml = "<View><Query><Where><Eq><FieldRef Name='ListName' /><Value Type='Choice'>" + listName + "</Value></Eq></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
+  const q: CamlQuery = {
+    ViewXml: xml
+  };
+
+  return web.lists.getByTitle(listsName.listConfig).getItemsByCAMLQuery(q).then((items: any) => {
+    return items != null ? items[0].Title : null;
+  });
+};
+
+/**
+* // TODO: Merge
+* getPageConfiguration
+* @param siteUrl,pageName
+* @returns Page name from item title
+*/
+export const getPageConfiguration = (siteUrl: string, pageName: string): Promise<any> => {
+  var web = new Web(siteUrl);
+  //Caml query object
+  const xml = "<View><Query><Where><Eq><FieldRef Name='PageName' /><Value Type='Choice'>" + pageName + "</Value></Eq></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
+  const q: CamlQuery = {
+    ViewXml: xml
+  };
+
+  return web.lists.getByTitle(listsName.pageConfig).getItemsByCAMLQuery(q).then((items: any) => {
+    return items != null ? items[0].Title : null;
+  });
+};
+
 export const getEmployeeSubordinates = (siteUrl: string, staffNo: number): Promise<Employees[]> => {
   var web = new Web(siteUrl);
   //Caml query object

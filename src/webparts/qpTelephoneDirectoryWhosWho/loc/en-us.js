@@ -1,7 +1,7 @@
-define([], function() {
+define([], function () {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
-    "DescriptionFieldLabel": "Description Field"
+    "PropertyPaneDescription": "Here you can select a department to be the default",
+    "BasicGroupName": "QP Departments :",
+    "DescriptionFieldLabel": "Select a department"
   }
 });
