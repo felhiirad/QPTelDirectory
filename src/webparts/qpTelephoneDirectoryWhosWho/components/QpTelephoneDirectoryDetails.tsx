@@ -113,8 +113,12 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
     }
   }
 
+  public onError = (event) => {
+    event.target.src = require('../../assets/avatar-male.png');
+  }
+
   public render() {
-    const { hideDialog, employee, supervisor, subordinates, leaves, empPhoto, supervisorPhoto } = this.state;
+    const { hideDialog, employee, supervisor, subordinates, leaves } = this.state;
     return (
       <div id='dialog-target'>
         {employee && <DialogComponent width='90%' isModal={true} header="Employee Details" showCloseIcon={true} buttons={this.buttons} target='#dialog-target' visible={hideDialog} close={this.dialogClose} overlayClick={this.onOverlayClick}>
@@ -123,15 +127,15 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} />}
+                    {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} onError={this.onError} />}
                     {employee.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
                   </div>
 
                   <div className="employeebox">
                     <div className="employeename">{employee.Full_Name}</div>
-                    <div className="employeefontdefault">{employee.Acting_Position}</div>
-                    <div className="actingposition">{employee.Acting_Position_Department},{employee.Reference_Indicator}</div>
-                    <div className="employeefontdefault">{employee.Department}</div>
+                    <div className="employeefontdefault">{employee.Position} &bull; {employee.Section}</div>
+                    <div className="actingposition">{employee.Acting_Position}, {employee.Section},{employee.Reference_Indicator}</div>
+                    <div className="employeefontdefault">{employee.Department} &bull; {employee.Division}</div>
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
@@ -167,7 +171,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   {employee.Work_Location_Description && <div className="actionline">
                     <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30" height="30"
                       alt="location map" /></a></div>
-                    <div className="contacttitle"><a href="">{employee.Work_Location_Description}</a></div>
+                    <div className="contacttitle"><a href="">Room {employee.Office_Room_No_x002e_}, {employee.Work_Location_Description}, {employee.Work_Location_City}</a></div>
                   </div>}
                 </div>
                 <div className="horizontalcontact">
@@ -200,7 +204,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   <div className="supervisortitlecontainer">
                     <div className="supervisorphoto">
                       {supervisor.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + supervisor.Staff_No + ".jpg"} />}
-                      {supervisor.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                      {supervisor.Gender == 'F' && <img width="50" src={require('../../assets/avatar-female.png')} />}
                     </div>
 
                     <div className="supervisordetailsbox">

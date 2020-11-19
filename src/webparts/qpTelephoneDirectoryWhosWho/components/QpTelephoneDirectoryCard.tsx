@@ -31,6 +31,16 @@ const classNames = mergeStyleSets({
     display: 'inline-block',
     position: 'absolute',
     paddingTop: '10px'
+  },
+  employeeName: {
+    fontSize: '17px',
+    color: '#323130',
+    fontWeight: '500'
+  },
+  employeeDefault: {
+    fontSize: '13px',
+    color: '#323130',
+    fontWeight: '400'
   }
 });
 
@@ -48,9 +58,9 @@ const onRenderCompactCard = (data: IEmployeeCardProps): JSX.Element => {
       </div>
 
       <div className={classNames.employeeBoxCard}>
-        <div className="employeename">{data.employee.Full_Name}</div>
-        <div className="employeefontdefault">{data.employee.Position}</div>
-        <div className="employeefontdefault">{data.employee.Department}</div>
+        <div className={classNames.employeeName}>{data.employee.Full_Name}</div>
+        <div className={classNames.employeeDefault}>{data.employee.Position}</div>
+        <div className={classNames.employeeDefault}>{data.employee.Department}</div>
       </div>
     </div>
   );
@@ -85,7 +95,7 @@ const onRenderExpandedCard = (data: IEmployeeCardProps): JSX.Element => {
                   {data.employee.Work_Location_Description && <div className="actionline">
                     <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30" height="30"
                       alt="location map" /></a></div>
-                    <div className="contacttitle"><a href="">{data.employee.Work_Location_Description}</a></div>
+                    <div className="contacttitle"><a href="">Room {data.employee.Office_Room_No_x002e_}, {data.employee.Work_Location_Description}, {data.employee.Work_Location_City}</a></div>
                   </div>}
     </div>
   );
@@ -96,18 +106,14 @@ export interface IEmployeeCardProps {
   siteUrl: string;
 }
 
-export interface IEmployeeCardState {
-
-}
-
-class EmployeeCard extends React.Component<IEmployeeCardProps, IEmployeeCardState>{
+class EmployeeCard extends React.Component<IEmployeeCardProps, {}>{
 
   private expandingCardProps: IExpandingCardProps = {
     onRenderCompactCard: onRenderCompactCard,
     onRenderExpandedCard: onRenderExpandedCard,
     renderData: this.props,
-    expandedCardHeight: 250,
-    compactCardHeight: 140
+    expandedCardHeight: 270,
+    compactCardHeight: 150
   };
 
   public render() {

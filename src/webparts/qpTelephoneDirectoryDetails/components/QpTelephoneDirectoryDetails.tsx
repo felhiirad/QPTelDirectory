@@ -81,6 +81,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
     );
   }
 
+  private onError = (event) => {
+    event.target.src = require('../../assets/avatar-male.png');
+  }
+
   public render() {
     const { employee, supervisor, subordinates, leaves } = this.state;
     return (
@@ -89,15 +93,15 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} />}
-                    {employee.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                  {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} onError={this.onError} />}
+                    {employee.Gender == 'F' && <img width="50" src={require('../../assets/avatar-female.png')} />}
                   </div>
 
                   <div className="employeebox">
-                    <div className="employeename">{employee.Full_Name}</div>
-                    <div className="employeefontdefault">{employee.Acting_Position}</div>
-                    <div className="actingposition">{employee.Acting_Position_Department},{employee.Reference_Indicator}</div>
-                    <div className="employeefontdefault">{employee.Department}</div>
+                  <div className="employeename">{employee.Full_Name}</div>
+                    <div className="employeefontdefault">{employee.Position} &bull; {employee.Section}</div>
+                    <div className="actingposition">{employee.Acting_Position}, {employee.Section},{employee.Reference_Indicator}</div>
+                    <div className="employeefontdefault">{employee.Department} &bull; {employee.Division}</div>
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
@@ -133,7 +137,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   {employee.Work_Location_Description && <div className="actionline">
                     <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30" height="30"
                       alt="location map" /></a></div>
-                    <div className="contacttitle"><a href="">{employee.Work_Location_Description}</a></div>
+                    <div className="contacttitle"><a href="">Room {employee.Office_Room_No_x002e_}, {employee.Work_Location_Description}, {employee.Work_Location_City}</a></div>
                   </div>}
                 </div>
                 <div className="horizontalcontact">
