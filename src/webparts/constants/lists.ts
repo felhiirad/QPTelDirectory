@@ -1,3 +1,6 @@
+/**
+ * Lists Name
+ */
 export const listsName = {
   employees: "EMPLOYEES",
   delegations: "DELEGATIONS",
@@ -6,6 +9,9 @@ export const listsName = {
   pageConfig: "Pages Configuration"
 };
 
+/**
+ * Pages Name
+ */
 export const listPage = {
   employeeSearch: "Employee-Search.aspx",
   detailsEmployee: "Employee-Details.aspx",
