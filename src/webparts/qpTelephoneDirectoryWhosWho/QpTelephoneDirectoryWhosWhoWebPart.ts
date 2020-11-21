@@ -3,21 +3,15 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-<<<<<<< HEAD
   PropertyPaneTextField,
   PropertyPaneDropdown,
   IPropertyPaneDropdownOption
-=======
-  IPropertyPaneDropdownOption,
-  PropertyPaneDropdown
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'QpTelephoneDirectoryWhosWhoWebPartStrings';
 import QpTelephoneDirectoryWhosWho from './components/QpTelephoneDirectoryWhosWho';
 import { IQpTelephoneDirectoryWhosWhoProps } from './components/IQpTelephoneDirectoryWhosWhoProps';
-<<<<<<< HEAD
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 import { getAllEmployees } from '../services/QpTelephoneDirectoryServices';
 import { Employees } from '../entities/IEmployees';
@@ -44,18 +38,6 @@ export default class QpTelephoneDirectoryWhosWhoWebPart extends BaseClientSideWe
   //     });
   //   }
   // }
-=======
-import { getAllEmployees } from '../services/QpTelephoneDirectoryServices';
-import { Employees } from '../entities/IEmployees';
-
-export interface IQpTelephoneDirectoryWhosWhoWebPartProps {
-  description: string;
-  selectedDepartment: string;
-}
-
-export default class QpTelephoneDirectoryWhosWhoWebPart extends BaseClientSideWebPart <IQpTelephoneDirectoryWhosWhoWebPartProps> {
-  private departments: IPropertyPaneDropdownOption[];
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
 
   public render(): void {
     const element: React.ReactElement<IQpTelephoneDirectoryWhosWhoProps> = React.createElement(
@@ -64,13 +46,8 @@ export default class QpTelephoneDirectoryWhosWhoWebPart extends BaseClientSideWe
       {
         description: this.properties.description,
         context: this.context,
-<<<<<<< HEAD
         siteUrl: this.context.pageContext.web.absoluteUrl,
         selectedDepartment: this.properties.SelectedDepartment //anis
-=======
-        siteUrl : this.context.pageContext.web.absoluteUrl,
-        selectedDepartment: this.properties.selectedDepartment
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
       }
     );
 
@@ -140,49 +117,6 @@ export default class QpTelephoneDirectoryWhosWhoWebPart extends BaseClientSideWe
     return options;
   }
 
-  private loadDepatments(): Promise<IPropertyPaneDropdownOption[]> {
-    return new Promise <IPropertyPaneDropdownOption[]> ((resolve) => {
-      getAllEmployees(this.context.pageContext.web.absoluteUrl).then((items: Employees[]) => {
-        var options = [];
-        options.push({ key: 'All', text: 'All' });
-        for (var emp of items) {
-          if (options.find(e => e.text == emp.Department) == undefined) {
-            options.push({ key: emp.Department, text: emp.Department });
-          }
-        }
-        resolve(options);
-      });
-    });
-  }
-
-  protected onPropertyPaneConfigurationStart(): void {
-
-    if (this.departments) {
-      return;
-    }
-
-    this.context.statusRenderer.displayLoadingIndicator(this.domElement, 'lists');
-
-    this.loadDepatments()
-      .then((listOptions: IPropertyPaneDropdownOption[]): void => {
-        this.departments = listOptions;
-        this.context.propertyPane.refresh();
-        this.context.statusRenderer.clearLoadingIndicator(this.domElement);
-        this.render();
-      });
-  }
-
-  protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: any, newValue: any): void {
-    if (propertyPath === 'selectedDepartment' && newValue) {
-      super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
-      this.context.propertyPane.refresh();
-      this.render();
-    }
-    else {
-      super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
-    }
-  }
-
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     if (!this.listsFetched) {
       this.fetchDepartmentOptions().then((response) => {
@@ -202,15 +136,9 @@ export default class QpTelephoneDirectoryWhosWhoWebPart extends BaseClientSideWe
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-<<<<<<< HEAD
                 PropertyPaneDropdown('Departments', {
                   label: 'Departments',
                   options: this.dropdownOptions
-=======
-                PropertyPaneDropdown('selectedDepartment', {
-                  label: "Departments",
-                  options: this.departments
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
                 })
 
               ]
