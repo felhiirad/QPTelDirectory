@@ -20,8 +20,7 @@
 }
 
 a {
-  color: #00456b;
-  cursor: pointer;
+color: #00456b;
 }
 .fullcontainer {
 	display: -webkit-flex;
@@ -69,7 +68,7 @@ a {
 }
 
 .employeebox{
-	width: 470px;
+	max-width: 500px;
 	background-color: #f8f8f8;
 }
 
@@ -77,6 +76,7 @@ a {
 .employeename{
 	color: #323130;
 	font-size: 1.5rem;
+	width: 500px;
 }
 
 .employeefontdefault{
@@ -122,8 +122,7 @@ hr{
 
 .profiletitle{
 	color: #323130;
-  font-size: 1.5rem;
-  padding-bottom: 10px;
+	font-size: 1.5rem;
 }
 
 .contacttitle{
@@ -137,6 +136,7 @@ hr{
 .actionline{
 	display:flex;
 	flex-basis: 100%;
+	flex-flow: row wrap;
 }
 .small_icons{
 	margin: 5px;
