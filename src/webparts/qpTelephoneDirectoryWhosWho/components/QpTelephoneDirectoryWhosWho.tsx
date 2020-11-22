@@ -14,11 +14,7 @@ require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/fabric.css
 require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css');
 
 import { IQpTelephoneDirectoryWhosWhoProps } from './IQpTelephoneDirectoryWhosWhoProps';
-<<<<<<< HEAD
-import { getAllEmployees, getlistConfiguration } from '../../services/QpTelephoneDirectoryServices';
-=======
 import { getEmployeeByDepartment } from '../../services/QpTelephoneDirectoryServices';
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
 import { Employees } from '../../entities/IEmployees';
 import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
 import { GlobalLoader } from '../../tools/GlobalLoader';
@@ -88,27 +84,7 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
   };
 
   useEffect(() => {
-<<<<<<< HEAD
-    var deprts = [];
-    deprts.push({ department: 'All', key: '1' }); var key = 2;
-    //anis
-    const listEmp = getlistConfiguration(props.siteUrl, "Employees").then((items) => {
-      console.log(items)
-    })
-    //anis
-    //  setSelectedDepartment(props.selectedDepartment);
-    var query = new URLSearchParams(window.location.search).get("department");
-    if (query != null && query != "") {
-      gridInstance.filterSettings.columns = [
-        {
-          field: 'Department', matchCase: false,
-          operator: 'equal', predicate: 'and', value: query
-        }
-      ];
-    }
-=======
     var department = props.selectedDepartment != "" ? props.selectedDepartment : new URLSearchParams(window.location.search).get("department");
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
 
     var divs = [];
     divs.push({division: 'All', key: '1'}); var key = 2;
@@ -116,15 +92,8 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
       setEmployees(items);
       setLoading(false);
       for (var emp of items) {
-<<<<<<< HEAD
-        if (deprts.find(e => e.department == emp.Department) == undefined) {
-          deprts.push({ department: emp.Department, key: `${key}` });
-          if (query == emp.Department)
-            setSelectedDepartment(`${key}`);
-=======
         if (divs.find(e => e.division == emp.Division) == undefined) {
           divs.push({division: emp.Division, key: `${key}`});
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
           key++;
         }
       }
@@ -133,17 +102,6 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
   }, []);
 
   const onChange = (sel) => {
-<<<<<<< HEAD
-    if (sel.itemData.department === 'All') {
-      gridInstance.clearFiltering();
-      setSelectedEmployee(null);
-      setSelectedDepartment(null);
-    }
-    else {
-      gridInstance.filterByColumn('Department', 'equal', sel.itemData.department);
-      setSelectedEmployee(null);
-      setSelectedDepartment(sel.itemData.key);
-=======
     if (sel.itemData.division === 'All') {
         gridInstance.clearFiltering();
         setSelectedEmployee(null);
@@ -151,7 +109,6 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
     else {
         gridInstance.filterByColumn('Division', 'equal', sel.itemData.division);
         setSelectedEmployee(null);
->>>>>>> e382f1a1b01a8da17b547b247a234aa0787e674e
     }
   };
 
