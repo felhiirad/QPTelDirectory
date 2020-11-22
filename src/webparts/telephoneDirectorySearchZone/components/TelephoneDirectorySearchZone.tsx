@@ -1,48 +1,49 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { listPage } from '../../constants/lists';
 import { ITelephoneDirectorySearchZoneProps } from './ITelephoneDirectorySearchZoneProps';
+import { getEmployeeByQuery } from '../../services/QpTelephoneDirectoryServices';
+
 
 const SearchZone = styled.div`
-  height: 35px;
-  padding: 1rem;
-  border: 5px solid #00456B;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+  border: 3px solid #00456b;
+  background: rgb(241, 241, 241);
+  overflow: auto;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 `;
 
 const SearchText = styled.input`
-  position: absolute;
-  left: 29px;
-  top: 36px;
-  bottom: 5px;
-  background: #f1f1f1;
-  color: #000;
-  border: none;
-  padding: 5px;
-  width: 80%;
-  height: 24px;
+  border: 0px;
+  width: 75%;
+  padding: 10px;
+  background: none;
 
   ::placeholder {
     font-style: italic;
   }
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 const SearchButton = styled.button`
-  position: absolute;
-  left: 75.5%;
-  top: 36px;
-  bottom: 5px;
-  background: #37B08C;
-  font-style: normal;
+  border: 0px;
+	background: none;
+	background-color: #37B08C;
+	color: #fff;
+	float: right;
+  padding: 10px;
   font-weight: bold;
-  font-size: 12px;
-  line-height: 0px;
-  color: #FFFEFE;
-  text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
-  border: none;
-  width: 17.5%;
-  height: 34px;
+	border-radius-top-right: 5px;
+	-moz-border-radius-top-right: 5px;
+	-webkit-border-radius-top-right: 5px;
+	border-radius-bottom-right: 5px;
+	-moz-border-radius-bottom-right: 5px;
+	-webkit-border-radius-bottom-right: 5px;
+  cursor:pointer;
 `;
 
 export interface ITelephoneDirectorySearchZoneState{
@@ -51,7 +52,6 @@ export interface ITelephoneDirectorySearchZoneState{
 
 export default class TelephoneDirectorySearchZone extends React.Component<ITelephoneDirectorySearchZoneProps, ITelephoneDirectorySearchZoneState> {
 
-
   constructor(props){
     super(props);
     this.state = {
@@ -59,13 +59,21 @@ export default class TelephoneDirectorySearchZone extends React.Component<ITelep
     };
   }
 
-  public searchAction = () => {
-    var url = `${this.props.siteUrl}/SitePages/Employee-Search.aspx?query=${this.state.searchText}`;
-    const link = document.createElement('a');
-    this.open(url);
+  private searchAction = (event) => {
+    event.preventDefault();
+    var url = '';
+
+    getEmployeeByQuery(this.props.siteUrl, this.state.searchText).then((res) => {
+      if(res.length == 1) {
+        url = `${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${res[0].Staff_No}`;
+      } else {
+        url = `${this.props.siteUrl}/SitePages/${listPage.employeeSearch}?query=${this.state.searchText}`;
+      }
+      this.open(url);
+    });
   }
 
-  public open = (url) => {
+  private open = (url) => {
     const win = window.open(url, '_blank');
     if (win != null) {
       win.focus();

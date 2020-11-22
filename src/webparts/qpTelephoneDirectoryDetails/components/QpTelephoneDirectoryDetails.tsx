@@ -14,8 +14,9 @@ require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css'
 
 import { Employees, Delegations } from '../../entities/IEmployees';
 import { IQpTelephoneDirectoryDetailsProps } from './IQpTelephoneDirectoryDetailsProps';
-import { getEmployeeSupervisor, getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../../services/QpTelephoneDirectoryServices';
+import { getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../../services/QpTelephoneDirectoryServices';
 import '../../styles/EmployeeProfile_style.css';
+import { listPage } from "../../constants/lists";
 
 export interface IQpTelephoneDirectoryDetailsState {
   staffNo?: number;
@@ -45,7 +46,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
       getEmployeeInfo(this.props.siteUrl, staffNo).then(employee => {
         this.setState({ employee: employee });
 
-        getEmployeeSupervisor(this.props.siteUrl, employee.Supervisor_ID).then(res => {
+        getEmployeeInfo(this.props.siteUrl, employee.Supervisor_ID).then(res => {
           this.setState({ supervisor: res });
         });
       });
@@ -73,11 +74,15 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
         <a className="subordonatemail" href={`mailto:${employee.Email}`}>
           <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt="a_varma@qp.com.qa" />
         </a>
-        <a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${employee.Staff_No}`)}>
+        <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${employee.Staff_No}`)}>
           {employee.Full_Name}
         </a>
       </>
     );
+  }
+
+  private onError = (event) => {
+    event.target.src = require('../../assets/avatar-male.png');
   }
 
   public render() {
@@ -88,19 +93,19 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
               <div className="bodyprofilecontainer">
                 <div className="leftprofilecontainer">
                   <div className="photo">
-                    {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} />}
-                    {employee.Gender == 'F' && <img width="100" src={require('../../assets/avatar-female.png')} />}
+                  {employee.Gender == 'M' && <img width="50" src={"/sites" + this.props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} onError={this.onError} />}
+                    {employee.Gender == 'F' && <img width="50" src={require('../../assets/avatar-female.png')} />}
                   </div>
 
                   <div className="employeebox">
-                    <div className="employeename">{employee.Full_Name}</div>
-                    <div className="employeefontdefault">{employee.Acting_Position}</div>
-                    <div className="actingposition">{employee.Acting_Position_Department},{employee.Reference_Indicator}</div>
-                    <div className="employeefontdefault">{employee.Department}</div>
+                  <div className="employeename">{employee.Full_Name}</div>
+                    <div className="employeefontdefault">{employee.Position} &bull; {employee.Section}</div>
+                    <div className="actingposition">{employee.Acting_Position}, {employee.Section},{employee.Reference_Indicator}</div>
+                    <div className="employeefontdefault">{employee.Department} &bull; {employee.Division}</div>
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
-                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${leave.Delegate.Staff_No}`)}>{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
+                      <div className="employeefontdefault">{moment(leave.DelegationStartDate).format('DD/MM/YYYY')} - {moment(leave.DelegationEndDate).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${leave.Delegate.Staff_No}`)}>{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
                       ))
                     }
                   </div>
@@ -132,7 +137,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   {employee.Work_Location_Description && <div className="actionline">
                     <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30" height="30"
                       alt="location map" /></a></div>
-                    <div className="contacttitle"><a href="">{employee.Work_Location_Description}</a></div>
+                    <div className="contacttitle"><a href="">Room {employee.Office_Room_No_x002e_}, {employee.Work_Location_Description}, {employee.Work_Location_City}</a></div>
                   </div>}
                 </div>
                 <div className="horizontalcontact">
@@ -170,7 +175,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     </div>
 
                     <div className="supervisordetailsbox">
-                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/Employee-Details.aspx?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
+                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position}</div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position_Department}</div>
                       <div className="supervisorfontdefault">{supervisor.Department}</div>
