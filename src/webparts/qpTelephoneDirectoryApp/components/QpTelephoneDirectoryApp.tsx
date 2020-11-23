@@ -49,13 +49,17 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
     columns: [{ field: 'Staff_No', direction: 'Ascending' }]
   };
 
+  const wrapOption: any = {
+    wrapMode: 'Content'
+  };
+
   const onError = (event) => {
     event.target.src = require('../../assets/avatar-male.png');
   };
 
   const photoTemplate = (employee): any => {
     return (<EmployeeCard employee={employee} siteUrl={props.siteUrl} >
-      <div className="empimg">
+      <div className="photoGrid">
         <span className="e-userimg">
           {employee.Gender == 'M' && <img width="50" src={"/sites" + props.siteUrl.split("/sites")[1] + "/Employee%20Photos/" + employee.Staff_No + ".jpg"} onError={onError} />}
           {employee.Gender == 'F' && <img width="50" src={require('../../assets/avatar-female.png')} />}
@@ -103,6 +107,8 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
           filterSettings={filter}
           allowFiltering={true}
           allowSorting={true}
+          allowTextWrap={true}
+          textWrapSettings={wrapOption}
           sortSettings={sortingOptions}
           toolbar={['Search']}
         >
@@ -112,7 +118,7 @@ export const QpTelephoneDirectoryApp: FC<IQpTelephoneDirectoryAppProps> = props 
             <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
             <ColumnDirective field="Department" filter={fieldFilter} headerText="Department" clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Division" filter={fieldFilter} headerText="Division" clipMode='EllipsisWithTooltip' />
-            <ColumnDirective field="Reference_Indicator" filter={fieldFilter} headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Mobile_No" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
