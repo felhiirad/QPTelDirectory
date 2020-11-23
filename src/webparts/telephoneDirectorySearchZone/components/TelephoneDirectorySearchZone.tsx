@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { listPage } from '../../constants/lists';
 import { ITelephoneDirectorySearchZoneProps } from './ITelephoneDirectorySearchZoneProps';
 import { getEmployeeByQuery } from '../../services/QpTelephoneDirectoryServices';
-
+import '../../styles//searchZone.css';
 
 const SearchZone = styled.div`
   border: 3px solid #00456b;
@@ -69,25 +69,18 @@ export default class TelephoneDirectorySearchZone extends React.Component<ITelep
       } else {
         url = `${this.props.siteUrl}/SitePages/${listPage.employeeSearch}?query=${this.state.searchText}`;
       }
-      this.open(url);
+      open(url);
     });
-  }
-
-  private open = (url) => {
-    const win = window.open(url, '_blank');
-    if (win != null) {
-      win.focus();
-    }
   }
 
   public render(): React.ReactElement<ITelephoneDirectorySearchZoneProps> {
     return (
-      <SearchZone>
+      <div className="searchZone">
         <form>
-          <SearchText type="text" placeholder="People Search..." onChange={ val => this.setState({searchText: val.target.value}) } />
-          <SearchButton onClick={this.searchAction} >Search</SearchButton>
+          <input className="searchText" type="text" placeholder="People Search..." onChange={ val => this.setState({searchText: val.target.value}) } />
+          <button className="searchButton" onClick={this.searchAction} >Search</button>
         </form>
-      </SearchZone>
+      </div>
     );
   }
 }

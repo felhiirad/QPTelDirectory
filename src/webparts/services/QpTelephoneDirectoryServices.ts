@@ -34,14 +34,24 @@ export const getEmployeeByQuery = (siteUrl: string, query: string): Promise<Empl
   {
     xml = "<View><Query><Where><Eq><FieldRef Name='Staff_No' /><Value Type='Number'>" + staffNo + "</Value></Eq></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
   } else {
-    xml = "<View><Query><Where><Contains><FieldRef Name='Full_Name' /><Value Type='Text'>" + query + "</Value></Contains></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
+    xml = "<View><Query><Where><Eq><FieldRef Name='Reference_Indicator' /><Value Type='Text'>" + query + "</Value></Eq></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
   }
 
   const q: CamlQuery = {
-    ViewXml: xml,
+    ViewXml: xml
   };
 
   return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(q).then((items: Employees[]) => {
+    if(items.length == 0){
+      xml = "<View><Query><Where><Contains><FieldRef Name='Full_Name' /><Value Type='Text'>" + query + "</Value></Contains></Where></Query><RowLimit Paged='TRUE'>11000</RowLimit></View>";
+      const qq: CamlQuery = {
+        ViewXml: xml
+      };
+
+      return web.lists.getByTitle(listsName.employees).getItemsByCAMLQuery(qq).then((res: Employees[]) => {
+        return res;
+      });
+    }
     return items;
   });
 };

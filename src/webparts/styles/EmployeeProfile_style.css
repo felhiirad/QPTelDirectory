@@ -60,6 +60,20 @@ a {
   height: auto;
  }
 
+ .photoGrid{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 5px 15px 10px 5px;
+}
+
+.photoGrid img{
+  width: 100%;
+  height: auto;
+ }
+
 .leftprofilecontainer{
 	display:flex;
 	flex-flow: row wrap;
@@ -114,7 +128,7 @@ hr{
 .contactmecontainer{
 	flex-flow: row wrap;
 	padding: 10px 10px 15px 15px;
-	max-width: 366px;
+	max-width: 300px;
 	height: auto;
 	background-color:#f8f8f8;
 	margin-left: 10px;
@@ -131,7 +145,13 @@ hr{
 	font-size: 1rem;
 	font-weight: 300;
 	padding: 9px;
-	max-width: 280px;
+	max-width: 265px;
+}
+
+.e-redirectLink:before {
+  content: '\e34e';
+  color: #323130;
+  margin-left: 10px;
 }
 
 .actionline{
@@ -226,13 +246,13 @@ hr{
 /* Thick red border */
 hr.hrline {
   border: .5px solid #d3d3d3;
-	width:345px;
+	width:330px;
 }
 
 
 /* Table */
 .subordinatesbox{
-	width:  630px;
+	width:  610px;
 	margin-top: 5px;
 	padding: 5px;
 }

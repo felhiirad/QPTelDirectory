@@ -106,13 +106,6 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
     );
   }
 
-  public open = (url) => {
-    const win = window.open(url, '_blank');
-    if (win != null) {
-      win.focus();
-    }
-  }
-
   public onError = (event) => {
     event.target.src = require('../../assets/avatar-male.png');
   }
@@ -133,9 +126,9 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
 
                   <div className="employeebox">
                     <div className="employeename">{employee.Full_Name}</div>
-                    <div className="employeefontdefault">{employee.Position} &bull; {employee.Section}</div>
-                    <div className="actingposition">{employee.Acting_Position}, {employee.Section},{employee.Reference_Indicator}</div>
-                    <div className="employeefontdefault">{employee.Department} &bull; {employee.Division}</div>
+                    <div className="employeefontdefault">{employee.Position + " "}{employee.Section && <span>&#8226; </span>}{employee.Section}</div>
+                    <div className="actingposition">{employee.Acting_Position ? employee.Acting_Position + ", " : ""}{employee.Section ? employee.Section + ", " : ""}{employee.Reference_Indicator}</div>
+                    <div className="employeefontdefault">{employee.Department + " "}{employee.Division && <span>&#8226; </span>}{employee.Division}</div>
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
@@ -171,7 +164,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   {employee.Work_Location_Description && <div className="actionline">
                     <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30" height="30"
                       alt="location map" /></a></div>
-                    <div className="contacttitle"><a href="">Room {employee.Office_Room_No_x002e_}, {employee.Work_Location_Description}, {employee.Work_Location_City}</a></div>
+                    <div className="contacttitle"><a href="">{employee.Office_Room_No_x002e_ ? "Room " + employee.Office_Room_No_x002e_ + ", " : ""}{employee.Work_Location_Description ? employee.Work_Location_Description + ", " : ""}{employee.Work_Location_City}</a></div>
                   </div>}
                 </div>
                 <div className="horizontalcontact">
@@ -210,7 +203,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     <div className="supervisordetailsbox">
                     <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
                       <div className="supervisorfontdefault">{supervisor.Acting_Position}</div>
-                      <div className="supervisorfontdefault">{supervisor.Acting_Position_Department}</div>
+                      <div className="supervisorfontdefault">{supervisor.Section}</div>
                       <div className="supervisorfontdefault">{supervisor.Department}</div>
                     </div>
 
@@ -242,7 +235,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                       {supervisor.Work_Location_Description && <div className="actionline">
                         <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30"
                           height="30" alt="location map" /></a></div>
-                        <div className="contacttitle"><a href="">{supervisor.Work_Location_Description}</a></div>
+                        <div className="contacttitle"><a href="">{supervisor.Office_Room_No_x002e_ ? "Room " + supervisor.Office_Room_No_x002e_ + ", " : ""}{supervisor.Work_Location_Description ? supervisor.Work_Location_Description + ", " : ""}{supervisor.Work_Location_City}</a></div>
                       </div>}
                     </div>
                   </div>
@@ -263,10 +256,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                       allowSorting={true}
                     >
                       <ColumnsDirective>
-                        <ColumnDirective field="Reference_Indicator" headerText="Ref. I.D." clipMode='EllipsisWithTooltip' />
+                        <ColumnDirective field="Reference_Indicator" headerText="Ref. I.D." width="100" clipMode='EllipsisWithTooltip' />
                         <ColumnDirective headerText="Name" clipMode='EllipsisWithTooltip' template={this.nameTemplate} />
-                        <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
-                        <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone" clipMode='EllipsisWithTooltip' />
+                        <ColumnDirective field="Staff_No" headerText="Staff No." width="100" clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
+                        <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone"  width="110" clipMode='EllipsisWithTooltip' />
                       </ColumnsDirective>
                       <Inject services={[Page, Filter, Sort, Selection]} />
                     </GridComponent>

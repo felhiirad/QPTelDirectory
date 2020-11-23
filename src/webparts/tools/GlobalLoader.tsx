@@ -51,7 +51,7 @@ const Wrapper = styled.div`
     visibility: visible;
 
     img {
-        width: 90px;
+        width: 200px;
     }
 `;
 
