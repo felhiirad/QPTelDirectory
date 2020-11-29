@@ -69,7 +69,7 @@ export default class TelephoneDirectorySearchZone extends React.Component<ITelep
       } else {
         url = `${this.props.siteUrl}/SitePages/${listPage.employeeSearch}?query=${this.state.searchText}`;
       }
-      open(url);
+      open(url, "_self");
     });
   }
 

@@ -107,14 +107,14 @@ export const getEmployeeByDepartment = (siteUrl: string, department: string): Pr
 export const getEmployeeLeaves = (siteUrl: string, staffNo: number): Promise<Delegations[]> => {
   var web = new Web(siteUrl);
   // Caml query object
-  const xml = "<View><Query><Where><And><Eq><FieldRef Name='StaffNo_x002e_' /><Value Type='Number'>" + staffNo + "</Value></Eq><And><Leq><FieldRef Name='LeaveStartDate' /><Value IncludeTimeValue='TRUE' Type='DateTime'><Today/></Value></Leq><Geq><FieldRef Name='LeaveEndDate' /><Value IncludeTimeValue='TRUE' Type='DateTime'><Today/></Value></Geq></And></And></Where></Query></View>";
+  const xml = "<View><Query><Where><And><Eq><FieldRef Name='Staff_No' /><Value Type='Number'>" + staffNo + "</Value></Eq><And><Leq><FieldRef Name='Leave_Start_Date' /><Value IncludeTimeValue='TRUE' Type='DateTime'><Today/></Value></Leq><Geq><FieldRef Name='Leave_End_Date' /><Value IncludeTimeValue='TRUE' Type='DateTime'><Today/></Value></Geq></And></And></Where></Query></View>";
   const q: CamlQuery = {
     ViewXml: xml
   };
 
   return web.lists.getByTitle(listsName.delegations).getItemsByCAMLQuery(q).then(async (delegations: Delegations[]) => {
     for (var detegation of delegations) {
-      await getEmployeeInfo(siteUrl, detegation.DelegateStaffNo_x002e_).then(emp => {
+      await getEmployeeInfo(siteUrl, detegation.Delegate_Staff_No).then(emp => {
         detegation.Delegate = emp;
       });
     }
