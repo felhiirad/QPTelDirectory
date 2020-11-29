@@ -13,10 +13,9 @@ export const getRecursive = (web, callback, lii = -1, items = []) => {
     q = q.skip(lii);
   }
   q.get().then((res) => {
-    if (res.length === 0) {
-      callback(items);
-    } else {
+    if (res.length != 0) {
       items = items.concat(res);
+      callback(items);
       getRecursive(web, callback, res[res.length - 1].Id, items);
     }
   });

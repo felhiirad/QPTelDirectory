@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
-import { GridComponent, ColumnsDirective, FilterSettingsModel, SortSettingsModel, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 
 require('../../../../node_modules/@syncfusion/ej2-base/styles/fabric.css');
@@ -19,6 +19,9 @@ import { Employees } from '../../entities/IEmployees';
 import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
 import { GlobalLoader } from '../../tools/GlobalLoader';
 import EmployeeCard from './QpTelephoneDirectoryCard';
+import { titleCase } from '../../tools/StringFormatter';
+import { getRecursive } from '../../tools/GetAllItems';
+import { Web } from 'sp-pnp-js';
 
 const MainWrapper = styled.div`
   padding: 1rem;
@@ -40,7 +43,7 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
 
   var gridInstance: GridComponent;
   var dropDownListInstance: DropDownListComponent;
-  var filter: FilterSettingsModel = {
+  var filter: any = {
     type: 'Menu'
   };
 
@@ -48,12 +51,8 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
     type: 'CheckBox'
   };
 
-  const wrapOption: any = {
-    wrapMode: 'Content'
-  };
-
   const fields = { text: 'division', value: 'key' };
-  const sortingOptions: SortSettingsModel = {
+  const sortingOptions: any = {
     columns: [{ field: 'Staff_No', direction: 'Ascending' }]
   };
 
@@ -83,7 +82,24 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
 
   const nameTemplate = (employee): any => {
     return (
-      <EmployeeName onClick={() => dialogOpen(employee)} >{employee.Full_Name}</EmployeeName>
+      <EmployeeName onClick={() => dialogOpen(employee)} >{titleCase(employee.Full_Name)}</EmployeeName>
+    );
+  };
+
+  const divisionTemplate = (employee): any => {
+    return (
+      <div>{employee.Division ? titleCase(employee.Division): employee.Division}</div>
+    );
+  };
+  const departmentTemplate = (employee): any => {
+    return (
+      <div>{employee.Department ? titleCase(employee.Department) : employee.Department}</div>
+    );
+  };
+
+  const emailTemplate = (employee): any => {
+    return (
+      <div>{employee.Email ? employee.Email.toLowerCase() : employee.Email}</div>
     );
   };
 
@@ -91,8 +107,10 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
     var department = props.selectedDepartment != "" ? props.selectedDepartment : new URLSearchParams(window.location.search).get("department");
 
     var divs = [];
+    var web = new Web(props.siteUrl);
     divs.push({division: 'All', key: '1'}); var key = 2;
-    getEmployeeByDepartment(props.siteUrl, department).then((items: Employees[]) => {
+    getRecursive(web, (results) => {
+      var items = results.filter(e => e.Department == department);
       setEmployees(items);
       setLoading(false);
       for (var emp of items) {
@@ -133,20 +151,18 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
           filterSettings={filter}
           allowFiltering={true}
           allowSorting={true}
-          allowTextWrap={true}
-          textWrapSettings={wrapOption}
           sortSettings={sortingOptions}
         >
           <ColumnsDirective>
-            <ColumnDirective headerText="Photo" allowSorting={false} allowFiltering={false} template={photoTemplate} />
+          <ColumnDirective headerText="Photo" width="80" allowSorting={false} allowFiltering={false} template={photoTemplate} />
             <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' template={nameTemplate} />
-            <ColumnDirective field="Staff_No" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
-            <ColumnDirective field="Department" filter={fieldFilter} headerText="Department" clipMode='EllipsisWithTooltip' />
-            <ColumnDirective field="Division" filter={fieldFilter} headerText="Division" clipMode='EllipsisWithTooltip' />
-            <ColumnDirective field="Reference_Indicator" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
-            <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
-            <ColumnDirective field="Mobile_No" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
-            <ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Staff_No" width="80" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
+            <ColumnDirective field="Department" filter={fieldFilter} headerText="Department" clipMode='EllipsisWithTooltip' template={departmentTemplate} />
+            <ColumnDirective field="Division" filter={fieldFilter} headerText="Division" clipMode='EllipsisWithTooltip' template={divisionTemplate} />
+            <ColumnDirective field="Reference_Indicator" width="80" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Office_Phone_No_1" width="100" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Mobile_No" width="100" headerText="Mobile No." clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Email" headerText="Email" clipMode='EllipsisWithTooltip' template={emailTemplate} />
           </ColumnsDirective>
           <Inject services={[Page, Filter, Sort, Selection]} />
         </GridComponent>

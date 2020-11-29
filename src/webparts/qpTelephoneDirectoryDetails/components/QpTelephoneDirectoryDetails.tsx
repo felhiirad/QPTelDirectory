@@ -17,6 +17,7 @@ import { IQpTelephoneDirectoryDetailsProps } from './IQpTelephoneDirectoryDetail
 import { getEmployeeSubordinates, getEmployeeLeaves, getEmployeeInfo } from '../../services/QpTelephoneDirectoryServices';
 import '../../styles/EmployeeProfile_style.css';
 import { listPage } from "../../constants/lists";
+import { titleCase } from "../../tools/StringFormatter";
 
 export interface IQpTelephoneDirectoryDetailsState {
   staffNo?: number;
@@ -65,10 +66,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
     return (
       <>
         <a className="subordonatemail" href={`mailto:${employee.Email}`}>
-          <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt="a_varma@qp.com.qa" />
+          <img src={require('../../assets/email_icon2.png')} width="15" height="10" alt={employee.Email} />
         </a>
         <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${employee.Staff_No}`)}>
-          {employee.Full_Name}
+        {titleCase(employee.Full_Name)}
         </a>
       </>
     );
@@ -91,14 +92,15 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   </div>
 
                   <div className="employeebox">
-                  <div className="employeename">{employee.Full_Name}</div>
-                  <div className="employeefontdefault">{employee.Position + " "}{employee.Section && <span>&#8226; </span>}{employee.Section}</div>
-                    <div className="actingposition">{employee.Acting_Position ? employee.Acting_Position + ", " : ""}{employee.Section ? employee.Section + ", " : ""}{employee.Reference_Indicator}</div>
-                    <div className="employeefontdefault">{employee.Department + " "}{employee.Division && <span>&#8226; </span>}{employee.Division}</div>
+                    <div className="employeename">{titleCase(employee.Full_Name)}</div>
+                    <div className="employeefontdefault">{"Staff No. " + employee.Staff_No + " "}{employee.Reference_Indicator && <span>&#8226; </span>}{employee.Reference_Indicator}</div>
+                    <div className="employeefontdefault">{titleCase(employee.Position) + " "}{employee.Section && <span>&#8226; </span>}{titleCase(employee.Section)}</div>
+                    <div className="actingposition">{employee.Acting_Position ? titleCase(employee.Acting_Position) + ", " : ""}{employee.Acting_Position_Department ? titleCase(employee.Acting_Position_Department) + ", " : ""}{employee.Acting_Reference_Indicator}</div>
+                    <div className="employeefontdefault">{titleCase(employee.Department) + " "}{employee.Division && <span>&#8226; </span>}{titleCase(employee.Division)}</div>
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
-                      <div className="employeefontdefault">{moment(leave.DelegationStartDate).format('DD/MM/YYYY')} - {moment(leave.DelegationEndDate).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${leave.Delegate.Staff_No}`)}>{leave.Delegate.Full_Name}, {leave.Delegate.Reference_Indicator}</a></div>
+                      <div className="employeefontdefault">{moment(leave.Delegate_Start_Date).format('DD/MM/YYYY')} - {moment(leave.Delegate_End_Date).format('DD/MM/YYYY')}, acting staff is <a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${leave.Delegate.Staff_No}`)}>{titleCase(leave.Delegate.Full_Name)}, {leave.Delegate.Reference_Indicator}</a></div>
                       ))
                     }
                   </div>
@@ -110,13 +112,13 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     <div className="small_icons"><a href={`mailto:${employee.Email}`}><img
                       src={require('../../assets/icon_mail_normal.png')} width="30" height="30"
                       alt={employee.Email} /></a></div>
-                    <div className="contacttitle"><a href={`mailto:${employee.Email}`}>{employee.Email}</a></div>
+                    <div className="contacttitle"><a href={`mailto:${employee.Email}`}>{employee.Email ? employee.Email.toLowerCase() : employee.Email}</a></div>
                   </div>}
 
-                  {employee.Mobile_No && <div className="actionline">
-                    <div className="small_icons"><a href={`tel:${employee.Mobile_No}`}><img src={require('../../assets/icon_phone_normal.png')} width="30"
+                  {employee.Office_Phone_No_1 && <div className="actionline">
+                    <div className="small_icons"><a href={`tel:${employee.Office_Phone_No_1}`}><img src={require('../../assets/icon_phone_normal.png')} width="30"
                       height="30" alt="phone" /></a></div>
-                    <div className="contacttitle"><a href={`tel:${employee.Mobile_No}`}>{employee.Mobile_No}</a></div>
+                    <div className="contacttitle"><a href={`tel:${employee.Office_Phone_No_1}`}>{employee.Office_Phone_No_1}</a></div>
                   </div>}
 
                   {employee.Email && <div className="actionline">
@@ -130,7 +132,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                   {employee.Work_Location_Description && <div className="actionline">
                     <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30" height="30"
                       alt="location map" /></a></div>
-                    <div className="contacttitle"><a href="">{employee.Office_Room_No_x002e_ ? "Room " + employee.Office_Room_No_x002e_ + ", " : ""}{employee.Work_Location_Description ? employee.Work_Location_Description + ", " : ""}{employee.Work_Location_City}</a></div>
+                    <div className="contacttitle"><a href="">{employee.Office_Room_No_x002e_ ? "Room " + employee.Office_Room_No_x002e_ + ", " : ""}{employee.Work_Location_Description ? titleCase(employee.Work_Location_Description) + ", " : ""}{titleCase(employee.Work_Location_City)}</a></div>
                   </div>}
                 </div>
                 <div className="horizontalcontact">
@@ -168,10 +170,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     </div>
 
                     <div className="supervisordetailsbox">
-                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${supervisor.Staff_No}`)}>{supervisor.Full_Name}</a></div>
-                      <div className="supervisorfontdefault">{supervisor.Acting_Position}</div>
-                      <div className="supervisorfontdefault">{supervisor.Section}</div>
-                      <div className="supervisorfontdefault">{supervisor.Department}</div>
+                    <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${supervisor.Staff_No}`)}>{titleCase(supervisor.Full_Name)}</a></div>
+                      <div className="supervisorfontdefault">{titleCase(supervisor.Position)}</div>
+                      <div className="supervisorfontdefault">{titleCase(supervisor.Division)}</div>
+                      <div className="supervisorfontdefault">{titleCase(supervisor.Department)}</div>
                     </div>
 
                     <div>
@@ -179,11 +181,10 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     </div>
 
                     <div className="contactmecontainer">
-
                       {supervisor.Email && <div className="actionline">
                         <div className="small_icons"><img src={require('../../assets/icon_mail_normal.png')} width="30" height="30"
                           alt="email" /></div>
-                        <div className="contacttitle"><a href={`mailto:${supervisor.Email}`}>{supervisor.Email}</a>
+                        <div className="contacttitle"><a href={`mailto:${supervisor.Email}`}>{supervisor.Email ? supervisor.Email.toLowerCase() : supervisor.Email}</a>
                         </div>
                       </div>}
 
@@ -203,13 +204,13 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                       {supervisor.Work_Location_Description && <div className="actionline">
                         <div className="small_icons"><a href=""><img src={require('../../assets/icon_map_normal.png')} width="30"
                           height="30" alt="location map" /></a></div>
-                        <div className="contacttitle"><a href="">{supervisor.Office_Room_No_x002e_ ? "Room " + supervisor.Office_Room_No_x002e_ + ", " : ""}{supervisor.Work_Location_Description ? supervisor.Work_Location_Description + ", " : ""}{supervisor.Work_Location_City}</a></div>
+                        <div className="contacttitle"><a href="">{supervisor.Office_Room_No_x002e_ ? "Room " + supervisor.Office_Room_No_x002e_ + ", " : ""}{supervisor.Work_Location_Description ? titleCase(supervisor.Work_Location_Description) + ", " : ""}{titleCase(supervisor.Work_Location_City)}</a></div>
                       </div>}
                     </div>
                   </div>
                 </div>
               </div>}
-              {subordinates && subordinates.length > 0 && employee.Subordinate_Display == "Y" && <div className="subordinatesbox">
+              {subordinates && employee.Subordinate_Display == "Y" && <div className="subordinatesbox">
                 <div className="supervisortitle">Subordinates</div>
                 <div className="subordinatesgreybody">
                   <div className="subordinatestitlecontainer">
