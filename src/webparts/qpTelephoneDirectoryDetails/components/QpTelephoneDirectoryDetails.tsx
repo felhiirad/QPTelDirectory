@@ -96,7 +96,7 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     <div className="employeefontdefault">{"Staff No. " + employee.Staff_No + " "}{employee.Reference_Indicator && <span>&#8226; </span>}{employee.Reference_Indicator}</div>
                     <div className="employeefontdefault">{titleCase(employee.Position) + " "}{employee.Section && <span>&#8226; </span>}{titleCase(employee.Section)}</div>
                     <div className="actingposition">{employee.Acting_Position ? titleCase(employee.Acting_Position) + ", " : ""}{employee.Acting_Position_Department ? titleCase(employee.Acting_Position_Department) + ", " : ""}{employee.Acting_Reference_Indicator}</div>
-                    <div className="employeefontdefault">{titleCase(employee.Department) + " "}{employee.Division && <span>&#8226; </span>}{titleCase(employee.Division)}</div>
+                    <div className="employeefontdefault">{employee.Department + " "}{employee.Division && <span>&#8226; </span>}{employee.Division}</div>
 
                     {leaves && leaves.length > 0 && <div className="employeeaway">The employee is away :</div>}
                     {leaves && leaves.length > 0 && leaves.map(leave => (
@@ -172,8 +172,8 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                     <div className="supervisordetailsbox">
                     <div className="supervisorname"><a onClick={() => open(`${this.props.siteUrl}/SitePages/${listPage.detailsEmployee}?staffNo=${supervisor.Staff_No}`)}>{titleCase(supervisor.Full_Name)}</a></div>
                       <div className="supervisorfontdefault">{titleCase(supervisor.Position)}</div>
-                      <div className="supervisorfontdefault">{titleCase(supervisor.Division)}</div>
-                      <div className="supervisorfontdefault">{titleCase(supervisor.Department)}</div>
+                      <div className="supervisorfontdefault">{supervisor.Division}</div>
+                      <div className="supervisorfontdefault">{supervisor.Department}</div>
                     </div>
 
                     <div>
@@ -225,8 +225,8 @@ class QpTelephoneDirectoryDetails extends React.Component<IQpTelephoneDirectoryD
                       allowSorting={true}
                     >
                       <ColumnsDirective>
-                      <ColumnDirective field="Reference_Indicator" headerText="Ref. I.D." width="100" clipMode='EllipsisWithTooltip' />
-                        <ColumnDirective headerText="Name" clipMode='EllipsisWithTooltip' template={this.nameTemplate} />
+                        <ColumnDirective field="Reference_Indicator" headerText="Ref. I.D." width="100" clipMode='EllipsisWithTooltip' />
+                        <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' template={this.nameTemplate} />
                         <ColumnDirective field="Staff_No" headerText="Staff No." width="100" clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
                         <ColumnDirective field="Office_Phone_No_1" headerText="Office Phone"  width="110" clipMode='EllipsisWithTooltip' />
                       </ColumnsDirective>
