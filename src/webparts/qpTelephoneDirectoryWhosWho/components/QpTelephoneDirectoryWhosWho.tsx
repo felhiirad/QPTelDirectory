@@ -3,18 +3,7 @@ import styled from 'styled-components';
 import { GridComponent, ColumnsDirective, ColumnDirective, Inject, Page, Sort, Filter, Selection } from '@syncfusion/ej2-react-grids';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 
-require('../../../../node_modules/@syncfusion/ej2-base/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-buttons/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-calendars/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-dropdowns/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-inputs/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-navigations/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-popups/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/fabric.css');
-require('../../../../node_modules/@syncfusion/ej2-react-grids/styles/fabric.css');
-
 import { IQpTelephoneDirectoryWhosWhoProps } from './IQpTelephoneDirectoryWhosWhoProps';
-import { getEmployeeByDepartment } from '../../services/QpTelephoneDirectoryServices';
 import { Employees } from '../../entities/IEmployees';
 import QpTelephoneDirectoryDetails from './QpTelephoneDirectoryDetails';
 import { GlobalLoader } from '../../tools/GlobalLoader';
@@ -22,6 +11,7 @@ import EmployeeCard from './QpTelephoneDirectoryCard';
 import { titleCase } from '../../tools/StringFormatter';
 import { getRecursive } from '../../tools/GetAllItems';
 import { Web } from 'sp-pnp-js';
+import '../../styles/SearchResults.css';
 
 const MainWrapper = styled.div`
   padding: 1rem;
@@ -86,17 +76,6 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
     );
   };
 
-  const divisionTemplate = (employee): any => {
-    return (
-      <div>{employee.Division ? titleCase(employee.Division): employee.Division}</div>
-    );
-  };
-  const departmentTemplate = (employee): any => {
-    return (
-      <div>{employee.Department ? titleCase(employee.Department) : employee.Department}</div>
-    );
-  };
-
   const emailTemplate = (employee): any => {
     return (
       <div>{employee.Email ? employee.Email.toLowerCase() : employee.Email}</div>
@@ -157,8 +136,8 @@ export const QpTelephoneDirectoryWhosWho: FC<IQpTelephoneDirectoryWhosWhoProps> 
           <ColumnDirective headerText="Photo" width="80" allowSorting={false} allowFiltering={false} template={photoTemplate} />
             <ColumnDirective field="Full_Name" headerText="Name" clipMode='EllipsisWithTooltip' template={nameTemplate} />
             <ColumnDirective field="Staff_No" width="80" headerText="Staff No." clipMode='EllipsisWithTooltip' isPrimaryKey={true} />
-            <ColumnDirective field="Department" filter={fieldFilter} headerText="Department" clipMode='EllipsisWithTooltip' template={departmentTemplate} />
-            <ColumnDirective field="Division" filter={fieldFilter} headerText="Division" clipMode='EllipsisWithTooltip' template={divisionTemplate} />
+            <ColumnDirective field="Department" filter={fieldFilter} headerText="Department" clipMode='EllipsisWithTooltip' />
+            <ColumnDirective field="Division" filter={fieldFilter} headerText="Division" clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Reference_Indicator" width="80" headerText="Reference Ind." clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Office_Phone_No_1" width="100" headerText="Office Phone No." clipMode='EllipsisWithTooltip' />
             <ColumnDirective field="Mobile_No" width="100" headerText="Mobile No." clipMode='EllipsisWithTooltip' />

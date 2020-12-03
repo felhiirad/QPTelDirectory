@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { listPage } from '../../constants/lists';
 import { ITelephoneDirectorySearchZoneProps } from './ITelephoneDirectorySearchZoneProps';
 import { getEmployeeByQuery } from '../../services/QpTelephoneDirectoryServices';
-import '../../styles//searchZone.css';
+import '../../styles/SearchZone.css';
 
 const SearchZone = styled.div`
   border: 3px solid #00456b;
